@@ -19,21 +19,8 @@ body {
   font-family: var(--lg-font);
 }
 
-.container {
-  padding: 30px;
-}
 
-.text {
-  padding-top: 20px;
-}
 
-.row {
-  padding-top: 10px;
-}
-
-.column {
-  border: thin solid red;
-}
 
 .divider:after,
 .divider:before {

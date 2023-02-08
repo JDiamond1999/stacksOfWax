@@ -12,34 +12,17 @@ body {
 
 /* NAVBAR */
 .navbar-brand {
-  padding: 10px;
   background-color: #e5345b;
   border-radius: 20px;
   letter-spacing: 2px;
   font-family: var(--lg-font);
 }
 
-.container {
-  padding: 30px;
+.card {
+  transition: transform 0.2s;
 }
-
-.text {
-  padding-top: 20px;
+.card:hover {
+  transform: scale(1.05);
 }
-
-.row {
-  padding-top: 10px;
-}
-
-.column img{
-    padding:10px;
-    padding-bottom:10px;
-}
-
-
-
-
-
-
 
 
