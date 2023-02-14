@@ -19,9 +19,6 @@ body {
   font-family: var(--lg-font);
 }
 
-
-
-
 .divider:after,
 .divider:before {
   content: "";
@@ -40,8 +37,6 @@ body {
   }
 }
 
-section{
-  padding-bottom:30px;
+section {
+  padding-bottom: 30px;
 }
-
-
