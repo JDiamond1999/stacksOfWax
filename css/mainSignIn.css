@@ -40,3 +40,16 @@ body {
 section {
   padding-bottom: 30px;
 }
+
+.button1 {
+  background-color: #e5345b;
+  border-color: grey;
+}
+
+.button1 {
+  transition: transform 0.2s;
+}
+
+.button1:hover {
+  transform: scale(1.05);
+}

@@ -50,10 +50,23 @@
             <a class="nav-link" href="signin.html"
               >Sign in <span class="sr-only">(current)</span></a
             >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="features.html">Features</a>
-          </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdownMenuLink"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Collections
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="addRecord.html">Add Collection</a>
+                <a class="dropdown-item" href="#">Manage Collections</a>
+                <a class="dropdown-item" href="#">Search Collections</a>
+              </div>
+            </li>
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
@@ -68,6 +81,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="addRecord.html">Add Record</a>
               <a class="dropdown-item" href="#">Manage Records</a>
+              <a class="dropdown-item" href="#">Search Records</a>
             </div>
           </li>
         </ul>
@@ -133,7 +147,7 @@
               <div class="text-center text-lg-start mt-4 pt-2">
                 <button
                   type="button"
-                  class="btn btn-primary btn-lg"
+                  class="button1 btn btn-lg text-white"
                   style="padding-left: 2.5rem; padding-right: 2.5rem"
                 >
                   Login
