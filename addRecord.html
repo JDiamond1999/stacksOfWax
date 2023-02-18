@@ -61,8 +61,7 @@
               Collections
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="addRecord.html">Add Collection</a>
-              <a class="dropdown-item" href="#">Manage Collections</a>
+              <a class="dropdown-item" href="manageCollections.html">Manage Collections</a>
               <a class="dropdown-item" href="#">Search Collections</a>
             </div>
           </li>
@@ -75,13 +74,12 @@
               aria-haspopup="true"
               aria-expanded="false"
             >
-              My Records
+              Records
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item active" href="#"
-                >Add Record<span class="sr-only">(current)</span></a
+              <a class="dropdown-item" href="manageRecords.html"
+                >Manage Records</a
               >
-              <a class="dropdown-item" href="#">Manage Records</a>
               <a class="dropdown-item" href="#">Search Records</a>
             </div>
           </li>
@@ -92,16 +90,16 @@
 
     <!-- Beginning of Add Record Section -->
     <section class="vh-100">
-      <div class="container container-fluid h-custom pt-5 pb-5 mb-5 mt-5">
-        <h1 class="p-3 text-dark">Add a Record</h1>
+      <div class="container container-fluid h-custom pt-5 pb-5 mb-5">
+        <h1 class="text-dark">Add a Record</h1>
 
         <div class="container pb-5 mb-4">
           <header class="pb-3 mb-5 border-bottom"></header>
 
-          <div
-            class="row d-flex justify-content-center align-items-left h-100"
-          >
-            <div class="enlarge column col-md-9 col-lg-6 mb-4 mb-sm-0 pt-5 pr-lg-5">
+          <div class="row d-flex justify-content-center align-items-left h-100">
+            <div
+              class="enlarge column col-md-9 col-lg-6 mb-4 mb-sm-0 pt-5 pr-lg-5"
+            >
               <a href="signin.html" class="getStarted">
                 <div class="card mx-auto" style="width: 20rem">
                   <img
@@ -130,8 +128,8 @@
                   <label class="form-label" for="form1">Record Title</label>
                 </div>
 
-                 <!-- Artist input -->
-                 <div class="form-outline mb-4">
+                <!-- Artist input -->
+                <div class="form-outline mb-4">
                   <input
                     type="artist"
                     id="form1"
@@ -166,7 +164,10 @@
                 </button>
 
                 <div class="form-outline mb-3"></div>
-                <select class="form-select form-select mb-3 p-2" aria-label=".form-select-lg example">
+                <select
+                  class="form-select form-select mb-3 p-2"
+                  aria-label=".form-select-lg example"
+                >
                   <option selected>--Add a Genre--</option>
                   <option value="1">Rock</option>
                   <option value="2">Metal</option>
@@ -176,9 +177,6 @@
                   <option value="6">Folk</option>
                   <option value="7">Other..</option>
                 </select>
-              </div>
-
-              
 
                 <div class="login text-center text-lg-start mt-4 pt-2">
                   <button

@@ -21,7 +21,7 @@
       crossorigin="anonymous"
     />
     <!-- custom css -->
-    <link rel="stylesheet" href="css/mainRegister.css" />
+    <link rel="stylesheet" href="css/mainAddRecord.css" />
   </head>
   <body>
     <!-- Beginning of Navbar -->
@@ -46,10 +46,8 @@
           <li class="nav-item">
             <a class="nav-link" href="index.html">Home</a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="signin.html"
-              >Sign in <span class="sr-only">(current)</span></a
-            >
+          <li class="nav-item">
+            <a class="nav-link" href="signin.html">Sign in</a>
           </li>
           <li class="nav-item dropdown">
             <a
@@ -67,7 +65,7 @@
               <a class="dropdown-item" href="#">Search Collections</a>
             </div>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown active">
             <a
               class="nav-link dropdown-toggle"
               href="#"
@@ -76,7 +74,7 @@
               aria-haspopup="true"
               aria-expanded="false"
             >
-              My Records
+              Records
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="manageRecords.html"
@@ -90,89 +88,43 @@
     </nav>
     <!-- End of Navbar -->
 
-    <!-- Beginning of Login Section -->
-    <section class="vh-100 bg-image">
-      <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-        <div class="container h-100 mt-5 mb-5 pt-3 pb-3">
-          <div
-            class="row d-flex justify-content-center align-items-center h-100"
-          >
-            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-              <div class="card" style="border-radius: 15px">
-                <div class="card-body p-5">
-                  <h2 class="text-uppercase text-center mb-5">
-                    Create an account
-                  </h2>
+    <!-- Beginning of Add Record Section -->
+    <section class="vh-100">
+      <div class="container container-fluid h-custom pt-5 pb-3">
+        
 
-                  <form>
-                    <div class="form-outline mb-4">
-                      <input
-                        type="text"
-                        id="form3Example1cg"
-                        class="form-control form-control-lg"
-                      />
-                      <label class="form-label" for="form3Example1cg"
-                        >Your First Name</label
-                      >
-                    </div>
+        <div class="container pb-5 mb-4">
+          <header class="pb-3 mb-5 border-bottom"></header>
 
-                    <div class="form-outline mb-4">
-                      <input
-                        type="text"
-                        id="form3Example1cg"
-                        class="form-control form-control-lg"
-                      />
-                      <label class="form-label" for="form3Example1cg"
-                        >Your Last Name</label
-                      >
-                    </div>
-
-                    <div class="form-outline mb-4">
-                      <input
-                        type="email"
-                        id="form3Example3cg"
-                        class="form-control form-control-lg"
-                      />
-                      <label class="form-label" for="form3Example3cg"
-                        >Your Email</label
-                      >
-                    </div>
-
-                    <div class="form-outline mb-4">
-                      <input
-                        type="password"
-                        id="form3Example4cg"
-                        class="form-control form-control-lg"
-                      />
-                      <label class="form-label" for="form3Example4cg"
-                        >Password</label
-                      >
-                    </div>
-
-                    <div class="d-flex justify-content-center">
-                      <button
-                        type="button"
-                        class="signin btn btn-block btn-lg gradient-custom-4 text-white"
-                      >
-                        Register
-                      </button>
-                    </div>
-
-                    <p class="text-center text-muted mt-5 mb-0">
-                      Have already an account?
-                      <a href="signin.html" class="fw-bold text-body"
-                        ><u>Login here</u></a
-                      >
-                    </p>
-                  </form>
-                </div>
+          <div class="row d-flex justify-content-center align-items-left h-100">
+            <div class="column col-md-9 col-lg-12 mb-1 pt-5">
+              <div class="card mx-auto" style="width: 25rem">
+                <img
+                  class="card-img-top"
+                  src="images/notFound.jpg"
+                  alt="Card image cap"
+                />
               </div>
+            </div>
+            <div
+              class="column col-md-8 col-lg-6 col-xl-4 pt-1 mt-1 mb-1 pt-sm-3 mt-sm-3 mx-auto"
+            >
+              <form>
+                <!-- Title -->
+                <div class="form-outline mb-4 text-center">
+                  <h3 class="pb-1">Record Title - xxxxxxx</h3>
+                  <h5 class="pb-1">Artist Name - xxxxxxx</h5>
+                  <p>Record label</p>
+                  <p>Release Year</p>
+                  <p>Tracklist</p>
+                </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- End of Login Section -->
+    <!-- End of Add Record Section -->
 
     <!-- Beginning of Footer -->
     <footer class="text-center text-lg-start text-white bg-dark">
