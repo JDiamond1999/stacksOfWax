@@ -1,0 +1,86 @@
+<%- include('navbar') %>
+
+<!-- Beginning of Add Record Section -->
+<section class="vh-100">
+  <div class="container container-fluid h-custom pt-5 pb-5 mb-5">
+    <h1 class="text-dark">Add a Collection</h1>
+
+    <div class="container pb-5 mb-4">
+      <header class="pb-3 mb-5 border-bottom"></header>
+
+      <div class="row d-flex justify-content-center align-items-left h-100">
+        <div class="col column col-md-9 col-lg-6 mb-4 mb-sm-0 pt-3 pr-lg-5">
+          <a href="/signin" class="getStarted">
+            <div class="card1 card mx-auto" style="width: 20rem">
+              <img
+                class="card-img-top"
+                src="addButton.jpg"
+                alt="Card image cap"
+              />
+              <div class="card-body mx-auto">
+                <p class="card-text">Add Collection Image</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div
+          class="column col-md-8 col-lg-6 col-xl-4 pt-1 mt-1 mb-1 pt-sm-3 mt-sm-3"
+        >
+          <form>
+            <!-- Collection Name input -->
+            <div class="form-outline mb-4">
+              <input
+                type="title"
+                id="form1"
+                class="form-control form-control-lg"
+                placeholder="Enter name for your collection"
+              />
+              <label class="form-label" for="form1">Collection Name</label>
+            </div>
+
+            <!-- Description input -->
+            <div class="form-group">
+              <textarea
+                class="form-control"
+                id="exampleFormControlTextarea1"
+                rows="3"
+                placeholder="Enter a description for your collection"
+              ></textarea>
+              <label for="exampleFormControlTextarea1"
+                >Collection Description</label
+              >
+            </div>
+
+            <!-- Record input -->
+            <div class="form-outline mb-3">
+              <input
+                type="track"
+                id="form3"
+                class="form-control form-control-lg"
+                placeholder="Add a record to your collection"
+              />
+            </div>
+
+            <div class="form-outline mb-3"></div>
+            <select
+              class="form-select form-select mb-3 p-2"
+              aria-label=".form-select-lg example"
+            >
+              <option selected>--Choose a Record--</option>
+              <option value="1">Record1</option>
+              <option value="2">Record2</option>
+              <option value="3">Record3</option>
+              <option value="4">Record4</option>
+            </select>
+            <button type="submit" class="button1 btn ms-2 text-white mb-4 mt-4">
+              Add Record
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End of Add Record Section -->
+
+<%- include('footer') %>

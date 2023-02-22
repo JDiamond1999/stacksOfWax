@@ -1,0 +1,77 @@
+<%- include('navbar', {active: "sign in"}) %>
+
+
+<!-- Beginning of Login Section -->
+<section class="vh-100">
+  <div class="container container-fluid h-custom pt-5 pb-5 mb-5 mt-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="column col-md-9 col-lg-7 mb-4 mb-sm-0">
+        <img
+          src="signUpRecord.jpg"
+          class="img-fluid rounded mx-auto d-block"
+          width="500rem"
+          alt="Sample image"
+        />
+      </div>
+      <div
+        class="column col-md-8 col-lg-6 col-xl-4 offset-xl-1 pt-1 mt-1 mb-1 pt-sm-3 mt-sm-3"
+      >
+        <form>
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <input
+              type="email"
+              id="form3Example3"
+              class="form-control form-control-lg"
+              placeholder="Enter a valid email address"
+            />
+            <label class="form-label" for="form3Example3">Email address</label>
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-3">
+            <input
+              type="password"
+              id="form3Example4"
+              class="form-control form-control-lg"
+              placeholder="Enter password"
+            />
+            <label class="form-label" for="form3Example4">Password</label>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center">
+            <!-- Checkbox -->
+            <div class="form-check mb-0">
+              <input
+                class="form-check-input me-2"
+                type="checkbox"
+                value=""
+                id="form2Example3"
+              />
+              <label class="form-check-label" for="form2Example3">
+                Remember me
+              </label>
+            </div>
+          </div>
+
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button
+              type="button"
+              class="button1 btn btn-lg text-white"
+              style="padding-left: 2.5rem; padding-right: 2.5rem"
+            >
+              Login
+            </button>
+            <p class="small fw-bold mt-2 pt-1 mb-0">
+              Don't have an account?
+              <a href="register" class="link">Register</a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End of Login Section -->
+
+<%- include('footer') %>

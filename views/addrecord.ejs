@@ -1,0 +1,108 @@
+<%- include('navbar') %>
+
+<!-- Beginning of Add Record Section -->
+<section class="vh-100">
+  <div class="container container-fluid h-custom pt-5 pb-5 mb-5">
+    <h1 class="text-dark">Add a Record</h1>
+
+    <div class="container pb-5 mb-4">
+      <header class="pb-3 mb-5 border-bottom"></header>
+
+      <div class="row d-flex justify-content-center align-items-left h-100">
+        <div class="col column col-md-9 col-lg-6 mb-4 mb-sm-0 pt-3 pr-lg-5">
+          <a href="\signin" class="getStarted">
+            <div class="card1 card mx-auto" style="width: 20rem">
+              <img
+                class="card-img-top"
+                src="addButton.jpg"
+                alt="Card image cap"
+              />
+              <div class="card-body mx-auto">
+                <p class="card-text">Add Record Image</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div
+          class="column col-md-8 col-lg-6 col-xl-4 pt-1 mt-1 mb-1 pt-sm-3 mt-sm-3"
+        >
+          <form>
+            <!-- Title input -->
+            <div class="form-outline mb-4">
+              <input
+                type="title"
+                id="form1"
+                class="form-control form-control-lg"
+                placeholder="Enter the title of the record"
+              />
+              <label class="form-label" for="form1">Record Title</label>
+            </div>
+
+            <!-- Artist input -->
+            <div class="form-outline mb-4">
+              <input
+                type="artist"
+                id="form1"
+                class="form-control form-control-lg"
+                placeholder="Enter the artist name"
+              />
+              <label class="form-label" for="form1">Artist Name</label>
+            </div>
+
+            <!-- Release Year input -->
+            <div class="form-outline mb-3">
+              <input
+                type="release-year"
+                id="form2"
+                class="form-control form-control-lg"
+                placeholder="Enter year of release"
+              />
+              <label class="form-label" for="form2">Release Year</label>
+            </div>
+
+            <!-- Track Name input -->
+            <div class="form-outline mb-3">
+              <input
+                type="track"
+                id="form3"
+                class="form-control form-control-lg"
+                placeholder="Enter a track from your record"
+              />
+            </div>
+            <button type="submit" class="button1 btn ms-2 text-white mb-4">
+              Add Track
+            </button>
+
+            <div class="form-outline mb-3"></div>
+            <select
+              class="form-select form-select mb-3 p-2"
+              aria-label=".form-select-lg example"
+            >
+              <option selected>--Add a Genre--</option>
+              <option value="1">Rock</option>
+              <option value="2">Metal</option>
+              <option value="3">Rap</option>
+              <option value="4">Techno</option>
+              <option value="5">Electronic</option>
+              <option value="6">Folk</option>
+              <option value="7">Other..</option>
+            </select>
+
+            <div class="login text-center text-lg-start mt-4 pt-2">
+              <button
+                type="button"
+                class="button1 btn btn-lg text-white"
+                style="padding-left: 2.5rem; padding-right: 2.5rem"
+              >
+                Add Record
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End of Add Record Section -->
+
+<%- include('footer') %>
