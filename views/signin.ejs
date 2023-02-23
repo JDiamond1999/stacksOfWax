@@ -16,7 +16,7 @@
       <div
         class="column col-md-8 col-lg-6 col-xl-4 offset-xl-1 pt-1 mt-1 mb-1 pt-sm-3 mt-sm-3"
       >
-        <form>
+        <form method="POST" id="send" action="\signin">
           <!-- Email input -->
           <div class="form-outline mb-4">
             <input
@@ -24,6 +24,7 @@
               id="form3Example3"
               class="form-control form-control-lg"
               placeholder="Enter a valid email address"
+              name="email_f"
             />
             <label class="form-label" for="form3Example3">Email address</label>
           </div>
@@ -35,6 +36,7 @@
               id="form3Example4"
               class="form-control form-control-lg"
               placeholder="Enter password"
+              name="password_f"
             />
             <label class="form-label" for="form3Example4">Password</label>
           </div>
@@ -56,7 +58,8 @@
 
           <div class="text-center text-lg-start mt-4 pt-2">
             <button
-              type="button"
+              type="submit"
+              value="send"
               class="button1 btn btn-lg text-white"
               style="padding-left: 2.5rem; padding-right: 2.5rem"
             >

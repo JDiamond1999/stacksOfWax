@@ -44,69 +44,87 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
 
-        <!-- Controls the "Home" nav element active status -->
-        <li class="nav-item">
-            <!-- If on home page, it will be active -->
-            <a <% if (active === 'index') {%> 
-            class="nav-link active" 
-            href="\" 
-            <%}
-             else {%> 
-                class="nav-link" 
-                href="\"
-                <%}%> 
-                > Home</a> </li>
+        <!-- Controls Navbar active status of 'Home' -->
+        <li class = "nav-item">
+          <a <% if (active === 'index') { %>
+            class = "nav-link active"
+            href="\"
+            <%} else { %>
+            class = nav-link
+            href="\"
+            <% } %> > Home </a>
+        </li>
+        <!-- End of 'Home' -->
 
-        <!-- Controls the "Sign in" nav element active status -->
-        <li class="nav-item">
-            <!-- If on Sign in page, it will be active -->
-            <a <% if (active === 'sign in') {%> 
-            class="nav-link active" 
-            href="\" 
-            <%}
-            else {%> 
-                class="nav-link" 
-                href="\signin"
-                <%}%> 
-                > Sign in</a> </li>
+        <!-- Controls Navbar active status of 'Sign in' -->
+        <li class = "nav-item">
+          <a <% if (active === 'sign in' || active === 'register') { %>
+            class = "nav-link active"
+            href="\signin"
+            <%} else { %>
+            class = nav-link
+            href="\signin"
+            <% } %> > Sign in </a>
+        </li>
+        <!-- End of 'Sign in' -->
 
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdownMenuLink"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Collections
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="\managecollections"
-                >Manage Collections</a
-              >
-              <a class="dropdown-item" href="\searchcollections"
-                >Search Collections</a
-              >
-            </div>
-          </li>
+        <!-- Controls Navbar active status of 'Collections' dropdown -->
+        <li <% if (active === 'manage collections' || active === 'view collection') { %>
+          class = "nav-item dropdown active"
+          <%} else { %>
+          class = "nav-item dropdown"
+          <% } %>>
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdownMenuLink"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Collections
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a <% if (active === 'manage collections') { %>
+              class = "dropdown-item active"
+              href="\managecollections"
+              <%} else { %>
+              class = dropdown-item
+              href="\managecollections"
+              <% } %> > Manage Collections </a>
+              <a class="dropdown-item" href="#">Search Collections</a>
+          </div>
+        </li>
+        <!-- End of 'Collections' -->
 
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdownMenuLink"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Records
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="\managerecords">Manage Records</a>
-              <a class="dropdown-item" href="\searchrecords">Search Records</a>
-            </div>
-          </li>
+        <!-- Controls Navbar active status of 'Records' dropdown -->
+        <li <% if (active === 'manage records' || active === 'view record' || active === 'add record') { %>
+          class = "nav-item dropdown active"
+          <%} else { %>
+          class = "nav-item dropdown"
+          <% } %>>
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdownMenuLink"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Records
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a <% if (active === 'manage records') { %>
+              class = "dropdown-item active"
+              href="\managerecords"
+              <%} else { %>
+              class = dropdown-item
+              href="\managerecords"
+              <% } %> > Manage Records </a>
+              <a class="dropdown-item" href="#">Search Records</a>
+          </div>
+        </li>
+        <!-- End of 'Records' -->
         </ul>
       </div>
     </nav>
