@@ -14,43 +14,51 @@
                   Create an account
                 </h2>
 
-                <form>
+                <form method="POST" id="send">
                   <div class="form-outline mb-4">
                     <input
-                      type="text"
+                      type="first name"
+                      name="first_name_register"
+                      placeholder="Enter your First Name"
                       id="form3Example1cg"
                       class="form-control form-control-lg"
                     />
                     <label class="form-label" for="form3Example1cg"
-                      >Your First Name</label
+                      >First Name</label
                     >
                   </div>
 
                   <div class="form-outline mb-4">
                     <input
-                      type="text"
+                      type="last name"
+                      name="last_name_register"
+                      placeholder="Enter your Last Name"
                       id="form3Example1cg"
                       class="form-control form-control-lg"
                     />
                     <label class="form-label" for="form3Example1cg"
-                      >Your Last Name</label
+                      >Last Name</label
                     >
                   </div>
 
                   <div class="form-outline mb-4">
                     <input
                       type="email"
+                      name="email_register"
+                      placeholder="Enter your Email"
                       id="form3Example3cg"
                       class="form-control form-control-lg"
                     />
                     <label class="form-label" for="form3Example3cg"
-                      >Your Email</label
+                      >Email</label
                     >
                   </div>
 
                   <div class="form-outline mb-4">
                     <input
                       type="password"
+                      name="password_register"
+                      placeholder="Enter your Password"
                       id="form3Example4cg"
                       class="form-control form-control-lg"
                     />
@@ -61,7 +69,8 @@
 
                   <div class="d-flex justify-content-center">
                     <button
-                      type="button"
+                      type="submit"
+                      value="send"
                       class="button1 btn btn-block btn-lg gradient-custom-4 text-white"
                     >
                       Register

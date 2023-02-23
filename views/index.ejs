@@ -3,10 +3,9 @@
 <div class="container">
   <div class="row">
     <div class="col col-lg-12 pt-5 pb-4">
+      <% if(typeof sentback != 'undefined'){ %>
 
-      <% if(typeof userdata != 'undefined'){ %> } %>
-
-      <p>email sent to ... <%= sentback.email_f %></p>
+      <h1 class="text-danger pb-5">Welcome to the community <%= sentback.first_name_register %>!</h1>
 
       <!-- here is where you can selectively show and hide divs using logic -->
       <% } else { } %>
@@ -92,9 +91,14 @@
         Create and share collections easily by uploading your vinyls today!
       </p>
       <div class="container pl-3">
-        <button class="enlarge btn btn-secondary btn-lg" type="button">
-          Get Creating
-        </button>
+        <a href="\signin">
+          <button
+            class="enlarge btn btn-outline-secondary text-white"
+            type="button"
+          >
+            Get Creating
+          </button>
+        </a>
       </div>
     </div>
   </div>
@@ -107,12 +111,14 @@
           Review and like others collections in our reviews section. Simply make
           an account to get started!
         </p>
-        <button
-          class="enlarge btn btn-outline-secondary text-white"
-          type="button"
-        >
-          Share Your Opinion
-        </button>
+        <a href="\signin">
+          <button
+            class="enlarge btn btn-outline-secondary text-white"
+            type="button"
+          >
+            Share Your Opinion
+          </button>
+        </a>
       </div>
     </div>
     <div class="jumbo3 col-md-6 mb-4">
@@ -123,12 +129,14 @@
           Search our extensive collection by checking out our many different
           genres!
         </p>
-        <button
-          class="enlarge btn btn-outline-secondary text-white"
-          type="button"
-        >
-          Search Our Records
-        </button>
+        <a href="\signin">
+          <button
+            class="enlarge btn btn-outline-secondary text-white"
+            type="button"
+          >
+            Search Our Records
+          </button>
+        </a>
       </div>
     </div>
   </div>
