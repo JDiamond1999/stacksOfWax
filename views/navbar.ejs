@@ -69,7 +69,7 @@
         <!-- End of 'Sign in' -->
 
         <!-- Controls Navbar active status of 'Collections' dropdown -->
-        <li <% if (active === 'manage collections' || active === 'view collection') { %>
+        <li <% if (active === 'manage collections' || active === 'view collection' || active === 'add collection') { %>
           class = "nav-item dropdown active"
           <%} else { %>
           class = "nav-item dropdown"
@@ -85,7 +85,7 @@
             Collections
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a <% if (active === 'manage collections') { %>
+            <a <% if (active === 'manage collections' || active === 'view collection' || active === 'add collection') { %>
               class = "dropdown-item active"
               href="\managecollections"
               <%} else { %>
@@ -114,7 +114,7 @@
             Records
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a <% if (active === 'manage records') { %>
+            <a <% if (active === 'manage records' || active === 'view record' || active === 'add record') { %>
               class = "dropdown-item active"
               href="\managerecords"
               <%} else { %>

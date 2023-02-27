@@ -3,11 +3,12 @@ const express = require("express");
 let app = express();
 const path = require("path");
 const bodyParser = require('body-parser');
+const mysql = require(`mysql`);
 
 //middleware
 app.use(express.static(path.join(__dirname, './css')));
 app.use(express.static(path.join(__dirname, './images')));
-app.use(bodyParser.urlencoded({extend: true}));
+app.use(bodyParser.urlencoded({ extend: true }));
 
 app.set('view engine', 'ejs');
 
@@ -36,7 +37,15 @@ app.get("/managecollections", function (req, res) {
     res.render('managecollections');
 });
 
+// trying to load in our data from sql
 app.get("/managerecords", function (req, res) {
+    
+    let readrecord = "SELECT * FROM record";
+    connection.query(readrecord, (err, rows) => {
+        if (err) throw err;
+        
+        console.log(result);
+    });
     res.render('managerecords');
 });
 
@@ -59,7 +68,7 @@ app.get("/viewrecord", function (req, res) {
 //     res.render('index', { sentback : userdata });
 // })
 
-app.post("/register", (req,res) => {
+app.post("/register", (req, res) => {
     // printing the form data to console as an array
     console.log(req.body);
 
@@ -67,8 +76,26 @@ app.post("/register", (req,res) => {
     let userdata = req.body;
 
     // send data back to home page as a json object
-    res.render('index', { sentback : userdata });
+    res.render('index', { sentback: userdata });
 })
+
+// port 3306 is the port our database is using (just check on xampp to make sure)
+const connection = mysql.createConnection({
+    host: `localhost`,
+    user: `root`,
+    password: ``,
+    database: `stacks of wax 1`,
+    port: `3306`,
+});
+
+connection.connect(function (err) {
+    if (err) {
+        return console.error(`error` + err.message);
+    }
+
+    console.log(`Connected to MySql Server`);
+});
+
 
 //server
 app.listen(process.env.PORT || 3000);
