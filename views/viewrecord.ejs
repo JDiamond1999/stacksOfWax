@@ -9,7 +9,11 @@
       <div class="row d-flex justify-content-center align-items-left h-100">
         <div class="column col-md-9 col-lg-12 mb-1 pt-5">
           <div class="card mx-auto" style="width: 25rem">
-            <img class="card-img-top" src="notFound.jpg" alt="Card image cap" />
+            <img
+              class="card-img-top"
+              src="<%= rowdata[0].cover_image %>"
+              alt="Card image cap"
+            />
           </div>
         </div>
         <div
@@ -18,11 +22,47 @@
           <form>
             <!-- Title -->
             <div class="form-outline mb-4 text-center">
-              <h3 class="pb-1">Record Title - xxxxxxx</h3>
-              <h5 class="pb-1">Artist Name - xxxxxxx</h5>
-              <p>Record label</p>
-              <p>Release Year</p>
-              <p>Tracklist</p>
+              <h3 class="pb-4"><%= rowdata[0].record_name %></h3>
+              <h5 class="pb-1">
+                <p class="pinktext font-weight-bold">Artist Name:</p>
+                <p><%= rowdata[0].artist_name %></p>
+              </h5>
+
+              
+
+              <h5 class="pb-1">
+                <p class="pinktext font-weight-bold">Record Label:</p>
+                <p><%= rowdata[0].record_label %></p>
+              </h5>
+              <h5 class="pb-1">
+                <p class="pinktext font-weight-bold">Year of Release:</p>
+                <p><%= rowdata[0].year_of_release %></p>
+              </h5>
+
+              <p>
+                
+                <button
+                  class="enlarge btn btn-danger"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#collapseExample"
+                  aria-expanded="false"
+                  aria-controls="collapseExample"
+                >
+                  Tracklist
+                </button>
+              </p>
+              <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                  <ul class="list-unstyled">
+                    <% rowdata.forEach(track => { %>
+    
+                    <li><%= track.track_name %></li>
+    
+                    <% }) %>
+                  </ul>
+                </div>
+              </div>
             </div>
           </form>
         </div>

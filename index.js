@@ -39,14 +39,18 @@ app.get("/managecollections", function (req, res) {
 
 // trying to load in our data from sql
 app.get("/managerecords", function (req, res) {
+
+    let readrecords = 
+    `SELECT * 
+    FROM record 
+    INNER JOIN artist 
+    ON record.artist_id=artist.artist_id`;
     
-    let readrecord = "SELECT * FROM record";
-    connection.query(readrecord, (err, rows) => {
+    connection.query(readrecords, (err, rows) => {
         if (err) throw err;
-        
-        console.log(result);
+        let rowdata = rows;
+        res.render('managerecords', { rowdata });
     });
-    res.render('managerecords');
 });
 
 app.get("/viewcollection", function (req, res) {
@@ -54,7 +58,24 @@ app.get("/viewcollection", function (req, res) {
 });
 
 app.get("/viewrecord", function (req, res) {
-    res.render('viewrecord');
+    let showid = req.query.recordid;
+    let readsql = 
+    `SELECT *
+    FROM track
+    INNER JOIN record_track
+    ON track.track_id = record_track.track_id
+    INNER JOIN record
+    ON record_track.record_id = record.record_id
+    INNER JOIN artist
+    ON record.artist_id = artist.artist_id
+    WHERE record.record_id = ?`;
+
+    connection.query(readsql, [showid], (err, rows) => {
+        if (err) throw err;
+        let rowdata = rows;
+        res.render(`viewrecord`, { rowdata });
+    });
+
 });
 
 // app.post("/signin", (req,res) => {
@@ -95,6 +116,7 @@ connection.connect(function (err) {
 
     console.log(`Connected to MySql Server`);
 });
+
 
 
 //server

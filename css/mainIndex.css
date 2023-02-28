@@ -36,15 +36,24 @@ body {
   }
 }
 
+.pinktext{
+  color:#e5345b;
+}
+
 section {
   padding-bottom: 30px;
 }
 
 .card1 {
   transition: transform 0.2s;
+  height:35vh;
 }
 .card1:hover {
   transform: scale(1.05);
+}
+
+.cardImage{
+  height:20vh;
 }
 
 .enlarge {
