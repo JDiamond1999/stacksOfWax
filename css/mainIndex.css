@@ -92,3 +92,14 @@ section {
 .button1:hover {
   transform: scale(1.05);
 }
+
+@media (max-width: 991px) {
+  .cardImage {
+    width: 17rem;
+    height: 15rem;
+   
+  }
+  .card1{
+    padding-top: 12px;
+  }
+}

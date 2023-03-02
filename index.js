@@ -9,6 +9,7 @@ const mysql = require(`mysql`);
 app.use(express.static(path.join(__dirname, './css')));
 app.use(express.static(path.join(__dirname, './images')));
 app.use(bodyParser.urlencoded({ extend: true }));
+app.use(express.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
 
@@ -29,9 +30,50 @@ app.get("/addcollection", function (req, res) {
     res.render('addcollection');
 });
 
+// WEE BIT
+
 app.get("/addrecord", function (req, res) {
-    res.render('addrecord');
+
+    let readgenres =
+    `SELECT genre_name 
+    FROM genre;`
+
+    connection.query(readgenres, (err, rows) => {
+        if (err) throw err;
+        let rowdata = rows;
+        res.render('addrecord', { rowdata });
+    });
+
 });
+
+app.post("/add", (req, res) => {
+    let image_link = req.body.imagelink;
+    let title = req.body.title;
+    let artist = req.body.artist;
+    let release_year = req.body.releaseyear;
+    let record_label = req.body.recordlabel;
+    let genre = req.body.genre;
+
+    let createsql = 
+    `SET @genreid = (SELECT genre_id FROM genre WHERE genre_name = ?);
+
+    INSERT INTO artist
+    (artist_name, artist_desc)
+    VALUES (?, "null");
+
+    SET @artistid = LAST_INSERT_ID();
+
+    INSERT INTO record 
+    (record_name, cover_image, year_of_release, record_label, record_likes, genre_id, artist_id ) 
+    VALUES( ? , ? , ?, ?, 0, @genreid, @artistid);`
+    connection.query(createsql,[genre],[artist],[title,image_link,release_year,record_label],(err, rows)=>{
+        if(err) throw err;
+        res.send(`You have added::: <p>${title}</p> <p>${image_link}</p> <p>${genre}</p>`);
+    });
+    
+});
+
+// END
 
 app.get("/managecollections", function (req, res) {
     res.render('managecollections');
@@ -40,12 +82,12 @@ app.get("/managecollections", function (req, res) {
 // trying to load in our data from sql
 app.get("/managerecords", function (req, res) {
 
-    let readrecords = 
-    `SELECT * 
+    let readrecords =
+        `SELECT * 
     FROM record 
     INNER JOIN artist 
-    ON record.artist_id=artist.artist_id`;
-    
+    ON record.artist_id=artist.artist_id;`
+
     connection.query(readrecords, (err, rows) => {
         if (err) throw err;
         let rowdata = rows;
@@ -59,8 +101,8 @@ app.get("/viewcollection", function (req, res) {
 
 app.get("/viewrecord", function (req, res) {
     let showid = req.query.recordid;
-    let readsql = 
-    `SELECT *
+    let readsql =
+        `SELECT *
     FROM track
     INNER JOIN record_track
     ON track.track_id = record_track.track_id
@@ -107,6 +149,7 @@ const connection = mysql.createConnection({
     password: ``,
     database: `stacks of wax 1`,
     port: `3306`,
+    multipleStatements: `true`
 });
 
 connection.connect(function (err) {
