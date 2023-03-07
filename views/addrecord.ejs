@@ -23,7 +23,7 @@
               </div>
               <div class="form-outline">
                 <input
-                  type="image-link"
+                  type="imagelink"
                   name = "imagelink"
                   id="form1"
                   class="form-control form-control-lg"
@@ -32,10 +32,10 @@
                 <label class="form-label" for="form1">Image Link</label>
               </div>
             </div>
-          </form>
+          
         </div>
         <div class="column col-md-8 col-lg-6 col-xl-4 pt-1 mt-1 mb-1 pt-3 mt-3">
-          <form action="add" method="POST">
+          
             <!-- Title input -->
             <div class="form-outline mb-4">
               <input
@@ -67,7 +67,7 @@
                 id="form2"
                 class="form-control form-control-lg"
                 placeholder="Enter year of release"
-                name = "release-year"
+                name = "releaseyear"
               />
               <label class="form-label" for="form2">Release Year</label>
             </div>
@@ -79,7 +79,7 @@
                 id="form2"
                 class="form-control form-control-lg"
                 placeholder="Enter record label"
-                name = "record-label"
+                name = "recordlabel"
               />
               <label class="form-label" for="form2">Record Label</label>
             </div>
@@ -92,7 +92,7 @@
             >
               <option selected>--Add a Genre--</option>
               <% rowdata.forEach(genre => { %>
-              <option value="2"><%= genre.genre_name %></option>
+              <option value="<%= genre.genre_id %>"><%= genre.genre_name %></option>
               <% }) %>
             </select>
 
