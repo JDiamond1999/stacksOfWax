@@ -28,8 +28,6 @@
                 <p><%= rowdata[0].artist_name %></p>
               </h5>
 
-              
-
               <h5 class="pb-1">
                 <p class="pinktext font-weight-bold">Record Label:</p>
                 <p><%= rowdata[0].record_label %></p>
@@ -40,7 +38,6 @@
               </h5>
 
               <p>
-                
                 <button
                   class="enlarge btn btn-danger"
                   type="button"
@@ -56,11 +53,21 @@
                 <div class="card card-body">
                   <ul class="list-unstyled">
                     <% rowdata.forEach(track => { %>
-    
+
                     <li><%= track.track_name %></li>
-    
+
                     <% }) %>
                   </ul>
+                 
+                  <a href="\edittracklist?recordid=<%= rowdata[0].record_id %>">
+                    <button
+                      class="enlarge btn btn-outline-secondary text-white"
+                      type="button"
+                    >
+                      Edit Tracklist
+                    </button>
+                  </a>
+                  
                 </div>
               </div>
             </div>

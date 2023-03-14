@@ -93,6 +93,19 @@ section {
   transform: scale(1.05);
 }
 
+.buttonDefault {
+  background-color: gray;
+  border-color: grey;
+}
+
+.buttonDefault {
+  transition: transform 0.2s;
+}
+
+.buttonDefault:hover {
+  transform: scale(1.05);
+}
+
 @media (max-width: 991px) {
   .cardImage {
     width: 17rem;

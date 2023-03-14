@@ -1,0 +1,63 @@
+<%- include('navbar', {active : "view record"}) %>
+
+<div class="row d-flex justify-content-center align-items-left h-100 pt-5 pb-5">
+  <div class="column col-8 col-md-6 col-xl-4 pt-1 mt-1 mb-1 pt-3 mt-3">
+    <div class="card mx-auto" style="width: 15rem">
+      <img
+        class="card-img-top"
+        src="<%= rowdata[0].cover_image %>"
+        alt="Card image cap"
+      />
+    </div>
+    <h3 class="pb-4 pt-4 text-center">
+      Edit Tracks For: <%= rowdata[0].record_name %>
+    </h3>
+    <form action="edit" method="POST">
+      <% rowdata.forEach(element => { %>
+      <div class="input-group input-group-lg mb-3">
+        <input
+          type="text"
+          class="form-control"
+          value="<%= element.track_name %>"
+          aria-label="Recipient's username"
+          aria-describedby="basic-addon2"
+        />
+        <div class="input-group-append">
+          <button class="buttonDefault btn btn-danger text-white color-default" type="button">
+            - 
+          </button>
+        </div>
+      </div>
+
+      <% }) %>
+
+      <div class="input-group input-group-lg mb-3 pt-5">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Add a Record"
+          aria-label="Recipient's username"
+          aria-describedby="basic-addon2"
+        />
+        <div class="input-group-append">
+          <button class="button1 btn btn-danger text-white" type="button">
+            +
+          </button>
+        </div>
+      </div>
+
+      <div class="login text-center text-lg-start mt-4 pt-2 pb-4">
+        <button
+          type="submit"
+          class="button1 btn btn-lg text-white"
+          style="padding-left: 2.5rem; padding-right: 2.5rem"
+          value="Add Record"
+        >
+          Save Changes
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<%- include('footer') %>

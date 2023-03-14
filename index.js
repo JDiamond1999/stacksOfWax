@@ -41,6 +41,28 @@ app.get("/addrecord", function (req, res) {
     });
 });
 
+app.get("/edittracklist", (req, res) => {
+
+    let showid = req.query.recordid;
+
+    let readtracks =
+        `SELECT track_name, record_name,cover_image FROM track 
+    INNER JOIN record_track
+    ON track.track_id=record_track.track_id
+    INNER JOIN record
+    ON record_track.record_id=record.record_id
+    WHERE record.record_id = ?;`;
+
+    connection.query(readtracks, [showid], (err, rows) => {
+        if (err) throw err;
+        let rowdata = rows;
+        res.render(`edittracklist`, { rowdata });
+    });
+
+
+
+});
+
 app.post("/add", (req, res) => {
     let image_link = req.body.imagelink;
     let title = req.body.title;
@@ -48,7 +70,7 @@ app.post("/add", (req, res) => {
     let release_year = req.body.releaseyear;
     let record_label = req.body.recordlabel;
     let genre_id = req.body.genre;
-    let lastinsert;
+
 
     let insertartistrecord = `INSERT INTO artist
   (artist_name, artist_desc)
@@ -116,7 +138,6 @@ app.get("/viewrecord", function (req, res) {
         if (err) throw err;
         let rowdata = rows;
         res.render(`viewrecord`, { rowdata });
-        console.log(rows);
     });
 });
 
