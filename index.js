@@ -46,12 +46,12 @@ app.get("/edittracklist", (req, res) => {
     let showid = req.query.recordid;
 
     let readtracks =
-        `SELECT track_name, record_name,cover_image FROM track 
-    INNER JOIN record_track
-    ON track.track_id=record_track.track_id
-    INNER JOIN record
-    ON record_track.record_id=record.record_id
-    WHERE record.record_id = ?;`;
+        `SELECT track.track_id, track_name, record_name,cover_image, record.record_id FROM track 
+        INNER JOIN record_track
+        ON track.track_id=record_track.track_id
+        INNER JOIN record
+        ON record_track.record_id=record.record_id
+        WHERE record.record_id = ?;`;
 
     connection.query(readtracks, [showid], (err, rows) => {
         if (err) throw err;
@@ -59,11 +59,63 @@ app.get("/edittracklist", (req, res) => {
         res.render(`edittracklist`, { rowdata });
     });
 
+});
+
+app.post("/addtrack", (req, res) => {
+
+    let recordid = req.query.recordid;
+    let track_name = req.body.addtrack;
+
+    console.log(recordid);
+
+    let addtrack =
+        `INSERT INTO track 
+        (track_id, track_name) 
+        VALUES (NULL, ?);
+        
+        SET @trackid = LAST_INSERT_ID();
+        
+        INSERT INTO record_track
+        (record_track_id,record_id,track_id)
+        VALUES (NULL, ?, @trackid);`;
+
+    connection.query(addtrack, [track_name, recordid], (err, rows) => {
+        if (err) throw err;
+    });
+
+    let readtracks =
+    `SELECT track.track_id, track_name, record_name,cover_image, record.record_id FROM track 
+    INNER JOIN record_track
+    ON track.track_id=record_track.track_id
+    INNER JOIN record
+    ON record_track.record_id=record.record_id
+    WHERE record.record_id = ?;`;
+
+    connection.query(readtracks, [recordid], (err, rows) => {
+        if (err) throw err;
+        let rowdata = rows;
+        res.render(`edittracklist`, { rowdata });
+    });
 
 
 });
 
-app.post("/add", (req, res) => {
+
+
+// app.post("/updatetracklist", (req, res) => {
+
+//     let showid = req.query.recordid;
+//     let track_name = req.body.trackname;
+
+//     console.log(track_name);
+
+
+
+// });
+
+
+app.post("/addrecord", (req, res) => {
+
     let image_link = req.body.imagelink;
     let title = req.body.title;
     let artist = req.body.artist;
@@ -72,31 +124,41 @@ app.post("/add", (req, res) => {
     let genre_id = req.body.genre;
 
 
-    let insertartistrecord = `INSERT INTO artist
-  (artist_name, artist_desc)
-  VALUES (?, "null");
+    let insertartistrecord =
+        `INSERT INTO artist
+        (artist_name, artist_desc)
+         VALUES (?, "null");
 
-  SET @artistid = LAST_INSERT_ID();
+        SET @artistid = LAST_INSERT_ID();
   
-  INSERT INTO record
-  (record_name, cover_image, year_of_release, record_label, record_likes, genre_id, artist_id )
-  VALUES( ? , ? , ? , ? , 0 , ? , @artistid );
-  
-  SET @recordid = LAST_INSERT_ID();
-  
-  INSERT INTO record_track (record_track_id, record_id, track_id) VALUES (NULL, @recordid, '73');`;
+        INSERT INTO record
+        (record_name, cover_image, year_of_release, record_label, record_likes, genre_id, artist_id )
+        VALUES( ? , ? , ? , ? , 0 , ? , @artistid );
+        
+        SET @recordid = LAST_INSERT_ID();
+        
+        INSERT INTO record_track 
+        (record_track_id, record_id, track_id) 
+        VALUES (NULL, @recordid, '73');`;
 
     connection.query(
         insertartistrecord,
         [artist, title, image_link, release_year, record_label, genre_id],
         (err, rows) => {
             if (err) throw err;
+        });
 
-            res.send(
-                `You have inserted::: <p>${artist}</p> to the artists database, and ${title} into the record table`
-            );
-        }
-    );
+    let readrecords =
+        `SELECT * 
+        FROM record 
+        INNER JOIN artist 
+        ON record.artist_id=artist.artist_id;`;
+
+    connection.query(readrecords, (err, rows) => {
+        if (err) throw err;
+        let rowdata = rows;
+        res.render("managerecords", { rowdata });
+    });
 });
 
 app.get("/managecollections", function (req, res) {
