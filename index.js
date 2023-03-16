@@ -3,33 +3,53 @@ const express = require("express");
 let app = express();
 const path = require("path");
 const bodyParser = require("body-parser");
-const mysql = require(`mysql`);
 
-//middleware
+
+// refering to our other js file (good modular code)
+const globalErrHandler = require(`./middleware/errorhandler`);
+const indexR = require(`./routes/indexR`);
+const signinR = require(`./routes/signinR`);
+const registerR = require(`./routes/registerR`);
+const addcollectionR = require(`./routes/addcollectionR`);
+const managecollectionsR = require(`./routes/managecollectionsR`);
+const viewcollectionR = require(`./routes/viewcollectionR`);
+const addrecordR = require(`./routes/addrecordR`);
+
+// Middleware
 app.use(express.static(path.join(__dirname, "./css")));
 app.use(express.static(path.join(__dirname, "./images")));
 app.use(bodyParser.urlencoded({ extend: true }));
 app.use(express.urlencoded({ extended: true }));
 
+// const connection = mysql.createConnection({
+//     host: `localhost`,
+//     user: `root`,
+//     password: ``,
+//     database: `stacks_of_wax_1`,
+//     port: `3306`,
+//     multipleStatements: `true`,
+// });
+
+// connection.connect(function (err) {
+//     if (err) {
+//         return console.error(`error` + err.message);
+//     }
+//     console.log(`Connected to MySql Server`);
+// });
+
+// Routes
+app.use(globalErrHandler);
+app.use(`/`, indexR);
+app.use(`/`, signinR);
+app.use(`/`, registerR);
+app.use(`/`, addcollectionR);
+app.use(`/`, managecollectionsR);
+app.use(`/`, viewcollectionR);
+app.use(`/`, addrecordR);
+
 app.set("view engine", "ejs");
 
-//routes
-app.get("/", function (req, res) {
-    res.render("index");
-});
-
-app.get("/signin", function (req, res) {
-    res.render("signin");
-});
-
-app.get("/register", function (req, res) {
-    res.render("register");
-});
-
-app.get("/addcollection", function (req, res) {
-    res.render("addcollection");
-});
-
+// SQL Routes
 app.get("/addrecord", function (req, res) {
     let readgenres = `SELECT genre_name, genre_id 
     FROM genre;`;
@@ -66,8 +86,6 @@ app.post("/addtrack", (req, res) => {
     let recordid = req.query.recordid;
     let track_name = req.body.addtrack;
 
-    console.log(recordid);
-
     let addtrack =
         `INSERT INTO track 
         (track_id, track_name) 
@@ -84,12 +102,12 @@ app.post("/addtrack", (req, res) => {
     });
 
     let readtracks =
-    `SELECT track.track_id, track_name, record_name,cover_image, record.record_id FROM track 
-    INNER JOIN record_track
-    ON track.track_id=record_track.track_id
-    INNER JOIN record
-    ON record_track.record_id=record.record_id
-    WHERE record.record_id = ?;`;
+        `SELECT track.track_id, track_name, record_name,cover_image, record.record_id FROM track 
+        INNER JOIN record_track
+        ON track.track_id=record_track.track_id
+        INNER JOIN record
+        ON record_track.record_id=record.record_id
+        WHERE record.record_id = ?;`;
 
     connection.query(readtracks, [recordid], (err, rows) => {
         if (err) throw err;
@@ -100,19 +118,37 @@ app.post("/addtrack", (req, res) => {
 
 });
 
+app.post("/removetrack", (req, res) => {
 
+    let recordid = req.query.recordid;
+    let track_id = req.body.trackid;
 
-// app.post("/updatetracklist", (req, res) => {
+    let removetrack =
+        `DELETE FROM record_track 
+        WHERE record_track.track_id = ?;
+        
+        DELETE FROM track 
+        WHERE track.track_id = ?;`;
 
-//     let showid = req.query.recordid;
-//     let track_name = req.body.trackname;
+    connection.query(removetrack, [track_id, track_id], (err, rows) => {
+        if (err) throw err;
+    });
 
-//     console.log(track_name);
+    let readtracks =
+        `SELECT track.track_id, track_name, record_name,cover_image, record.record_id FROM track 
+        INNER JOIN record_track
+        ON track.track_id=record_track.track_id
+        INNER JOIN record
+        ON record_track.record_id=record.record_id
+        WHERE record.record_id = ?;`;
 
+    connection.query(readtracks, [recordid], (err, rows) => {
+        if (err) throw err;
+        let rowdata = rows;
+        res.render(`edittracklist`, { rowdata });
+    });
 
-
-// });
-
+});
 
 app.post("/addrecord", (req, res) => {
 
@@ -161,17 +197,14 @@ app.post("/addrecord", (req, res) => {
     });
 });
 
-app.get("/managecollections", function (req, res) {
-    res.render("managecollections");
-});
-
 // trying to load in our data from sql
 app.get("/managerecords", function (req, res) {
     // chris says dont use select * from as it increases loading time/dont need resources
-    let readrecords = `SELECT * 
-    FROM record 
-    INNER JOIN artist 
-    ON record.artist_id=artist.artist_id;`;
+    let readrecords = 
+        `SELECT * 
+        FROM record 
+        INNER JOIN artist 
+        ON record.artist_id=artist.artist_id;`;
 
     connection.query(readrecords, (err, rows) => {
         if (err) throw err;
@@ -180,21 +213,19 @@ app.get("/managerecords", function (req, res) {
     });
 });
 
-app.get("/viewcollection", function (req, res) {
-    res.render("viewcollection");
-});
-
 app.get("/viewrecord", function (req, res) {
+    // let recordid = req.params.recordid;
     let showid = req.query.recordid;
-    let readsql = `SELECT *
-    FROM track
-    INNER JOIN record_track
-    ON track.track_id = record_track.track_id
-    INNER JOIN record
-    ON record_track.record_id = record.record_id
-    INNER JOIN artist
-    ON record.artist_id = artist.artist_id
-    WHERE record.record_id = ?`;
+    let readsql = 
+        `SELECT *
+        FROM track
+        INNER JOIN record_track
+        ON track.track_id = record_track.track_id
+        INNER JOIN record
+        ON record_track.record_id = record.record_id
+        INNER JOIN artist
+        ON record.artist_id = artist.artist_id
+        WHERE record.record_id = ?`;
 
     connection.query(readsql, [showid], (err, rows) => {
         if (err) throw err;
@@ -225,24 +256,7 @@ app.post("/register", (req, res) => {
     res.render("index", { sentback: userdata });
 });
 
-// port 3306 is the port our database is using (just check on xampp to make sure)
-const connection = mysql.createConnection({
-    host: `localhost`,
-    user: `root`,
-    password: ``,
-    database: `stacks_of_wax_1`,
-    port: `3306`,
-    multipleStatements: `true`,
-});
-
-connection.connect(function (err) {
-    if (err) {
-        return console.error(`error` + err.message);
-    }
-
-    console.log(`Connected to MySql Server`);
-});
-
 //server
 app.listen(process.env.PORT || 3000);
 console.log(" Server is listening on //localhost:3000/ ");
+
