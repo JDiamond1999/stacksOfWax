@@ -36,8 +36,8 @@ body {
   }
 }
 
-.pinktext{
-  color:#e5345b;
+.pinktext {
+  color: #e5345b;
 }
 
 section {
@@ -46,14 +46,14 @@ section {
 
 .card1 {
   transition: transform 0.2s;
-  height:35vh;
+  height: 35vh;
 }
 .card1:hover {
   transform: scale(1.05);
 }
 
-.cardImage{
-  height:20vh;
+.cardImage {
+  height: 20vh;
 }
 
 .enlarge {
@@ -93,26 +93,27 @@ section {
   transform: scale(1.05);
 }
 
+.button2 {
+  background-color: #e5345b;
+  border-color: grey;
+}
+
 .buttonDefault {
   background-color: gray;
   border-color: grey;
 }
 
-.buttonDefault {
-  transition: transform 0.2s;
-}
-
-.buttonDefault:hover {
-  transform: scale(1.05);
+.buttonSuccess {
+  background-color: #34e5be;
+  border-color: grey;
 }
 
 @media (max-width: 991px) {
   .cardImage {
     width: 17rem;
     height: 15rem;
-   
   }
-  .card1{
+  .card1 {
     padding-top: 12px;
   }
 }

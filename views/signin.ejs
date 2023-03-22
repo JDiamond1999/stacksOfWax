@@ -1,6 +1,5 @@
 <%- include('navbar', {active: "sign in"}) %>
 
-
 <!-- Beginning of Login Section -->
 <section class="vh-100">
   <div class="container container-fluid h-custom pt-5 pb-5 mb-5 mt-5">
@@ -16,7 +15,7 @@
       <div
         class="column col-md-8 col-lg-6 col-xl-4 offset-xl-1 pt-1 mt-1 mb-1 pt-sm-3 mt-sm-3"
       >
-        <form method="POST" id="send">
+        <form action="signin" method="POST">
           <!-- Email input -->
           <div class="form-outline mb-4">
             <input
@@ -24,7 +23,7 @@
               id="form3Example3"
               class="form-control form-control-lg"
               placeholder="Enter a valid email address"
-              name="email_f"
+              name="email_field"
             />
             <label class="form-label" for="form3Example3">Email address</label>
           </div>
@@ -36,7 +35,7 @@
               id="form3Example4"
               class="form-control form-control-lg"
               placeholder="Enter password"
-              name="password_f"
+              name="password_field"
             />
             <label class="form-label" for="form3Example4">Password</label>
           </div>
@@ -47,7 +46,6 @@
               <input
                 class="form-check-input me-2"
                 type="checkbox"
-                value=""
                 id="form2Example3"
               />
               <label class="form-check-label" for="form2Example3">

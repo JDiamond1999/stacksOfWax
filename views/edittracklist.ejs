@@ -26,13 +26,26 @@
         />
         <div class="input-group-append">
           <button
-            class="buttonDefault btn btn-danger text-white color-default"
+            class="buttonDefault btn btn-danger text-white"
             type="submit"
             data-bs-toggle="tooltip"
             data-bs-placement="right"
             title="Remove Track from Record"
+            name="edit"
+            value="remove"
           >
             -
+          </button>
+          <button
+            class="buttonSuccess btn btn-danger text-white"
+            type="submit"
+            data-bs-toggle="tooltip"
+            data-bs-placement="right"
+            title="Update Track Information"
+            name="edit"
+            value="update"
+          >
+            Update
           </button>
           <!-- Passing track_id through a hidden div for each input field -->
           <input type="hidden" name="trackid" value="<%= element.track_id %>" />
