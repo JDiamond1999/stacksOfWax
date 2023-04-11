@@ -33,7 +33,7 @@ managerecordsR.get("/managerecords", function (req, res) {
         });
 
     } else {
-        res.send("denied");
+        res.render('signin');
     }
 
 

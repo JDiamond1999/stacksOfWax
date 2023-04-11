@@ -1,4 +1,4 @@
-<%- include('navbar', {active : "add collection"}) %>
+<%- include('navbar', {active : "add record"}) %>
 
 <!-- Beginning of Add Record Section -->
 <section class="vh-100">
@@ -9,72 +9,81 @@
       <header class="pb-3 mb-5 border-bottom"></header>
 
       <div class="row d-flex justify-content-center align-items-left h-100">
-        <div class="col column col-md-9 col-lg-6 mb-4 mb-sm-0 pt-3 pr-lg-5">
-          <a href="/signin" class="getStarted">
-            <div class="card1 card mx-auto" style="width: 20rem">
-              <img
-                class="card-img-top"
-                src="addButton.jpg"
-                alt="Card image cap"
-              />
-              <div class="card-body mx-auto">
-                <p class="card-text">Add Collection Image</p>
+        <div
+          class="col column col-md-10 col-lg-6 mb-4 mb-lg-5 pt-3 mt-lg-3 pt-lg-5 pr-lg-5 mr-xlg-5"
+        >
+          <form action="addcollection" method="POST">
+            <div>
+              <div class="mb-4 d-flex justify-content-center">
+                <img
+                  src="placeholder.jpg"
+                  alt="example placeholder"
+                  style="width: 300px"
+                />
+              </div>
+              <div class="form-outline">
+                <input
+                  type="imagelink"
+                  name = "imagelink"
+                  id="form1"
+                  class="form-control form-control-lg"
+                  placeholder="Enter the Link to Your Cover Image"
+                />
+                <label class="form-label" for="form1">Image Link</label>
               </div>
             </div>
-          </a>
+          
         </div>
-        <div
-          class="column col-md-8 col-lg-6 col-xl-4 pt-1 mt-1 mb-1 pt-sm-3 mt-sm-3"
-        >
-          <form>
-            <!-- Collection Name input -->
+        <div class="column col-md-8 col-lg-6 col-xl-4 pt-1 mt-1 mb-1 pt-3 mt-lg-5">
+          
+            <!-- Title input -->
             <div class="form-outline mb-4">
               <input
+                name="title"
                 type="title"
                 id="form1"
                 class="form-control form-control-lg"
-                placeholder="Enter name for your collection"
+                placeholder="Enter collection name"
               />
               <label class="form-label" for="form1">Collection Name</label>
             </div>
 
-            <!-- Description input -->
-            <div class="form-group">
-              <textarea
-                class="form-control"
-                id="exampleFormControlTextarea1"
-                rows="3"
-                placeholder="Enter a description for your collection"
-              ></textarea>
-              <label for="exampleFormControlTextarea1"
-                >Collection Description</label
-              >
-            </div>
+           <!-- Description input -->
+           <div class="form-group">
+            <textarea
+              name="description"
+              class="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"
+              placeholder="Enter a description for your collection"
+            ></textarea>
+            <label for="exampleFormControlTextarea1"
+              >Collection Description</label
+            >
+          </div>
 
-            <!-- Record input -->
-            <div class="form-outline mb-3">
-              <input
-                type="track"
-                id="form3"
-                class="form-control form-control-lg"
-                placeholder="Add a record to your collection"
-              />
-            </div>
-
-            <div class="form-outline mb-3"></div>
+          <div class="form-outline mb-3"></div>
             <select
               class="form-select form-select mb-3 p-2"
               aria-label=".form-select-lg example"
+              name = "record"
             >
-              <option selected>--Choose a Record--</option>
-              <option value="1">Record1</option>
-              <option value="2">Record2</option>
-              <option value="3">Record3</option>
-              <option value="4">Record4</option>
+              <option selected>--Add First Record--</option>
+              <% rowdata.forEach(record => { %>
+              <option value="<%= record.record_id %>"><%= record.record_name %></option>
+              <% }) %>
             </select>
-            <button type="submit" class="button1 btn ms-2 text-white mb-4 mt-4">
-              Add Record
-            </button>
+
+            <div class="login text-center text-lg-start mt-4 pt-2">
+              <button
+                type="submit"
+                class="button1 btn btn-lg text-white"
+                style="padding-left: 2.5rem; padding-right: 2.5rem"
+                value="Add Collection"
+              >
+                Add Collection +
+              </button>
+            </div>
           </form>
         </div>
       </div>
@@ -84,3 +93,9 @@
 <!-- End of Add Record Section -->
 
 <%- include('footer') %>
+
+
+
+            
+
+            

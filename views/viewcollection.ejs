@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row">
     <div class="col col-lg-12 pt-5">
-      <h1>Manage Collections / Collection title</h1>
+      <h1><%= userdata[0].first_name%>'s Collections / <%= rowdata[0].collection_name %></h1>
     </div>
   </div>
 
@@ -12,152 +12,53 @@
     <header class="pb-3 mb-5 border-bottom"></header>
 
     <div class="row pt-3 pb-5">
-      <div class="col col-6">
+      <div class="col col-1">
         <a href="\manageCollections">
           <button
-            class="enlarge btn btn-outline-secondary text-white"
+            class="buttonDefault btn btn-outline-secondary text-white"
             type="button"
           >
             <- Back
           </button>
         </a>
       </div>
-    </div>
-
-    <div class="row pt-3 text-center pb-5">
-      <div class="column col-md-6 col-lg-3 text-center pb-4">
-        <a href="\viewRecord" class="getStarted">
-          <div class="card text-dark">
-            <img
-              class="card-img-top"
-              src="notFound.jpg"
-              alt="Card image cap"
-            />
-            <div class="card-body">
-              <strong>Record Title</strong>
-              <p>Record Artist</p>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div class="column col-md-6 col-lg-3 pb-4">
-        <a href="\viewRecord" class="getStarted">
-          <div class="card text-dark">
-            <img
-              class="card-img-top"
-              src="notFound.jpg"
-              alt="Card image cap"
-            />
-            <div class="card-body">
-              <strong>Record Title</strong>
-              <p>Record Artist</p>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div class="column col-md-6 col-lg-3 pb-4">
-        <a href="\viewRecord" class="getStarted">
-          <div class="card text-dark">
-            <img
-              class="card-img-top"
-              src="notFound.jpg"
-              alt="Card image cap"
-            />
-            <div class="card-body">
-              <strong>Record Title</strong>
-              <p>Record Artist</p>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div class="column col-md-6 col-lg-3 pb-4">
-        <a href="\viewRecord" class="getStarted">
-          <div class="card text-dark">
-            <img
-              class="card-img-top"
-              src="notFound.jpg"
-              alt="Card image cap"
-            />
-            <div class="card-body">
-              <strong>Record Title</strong>
-              <p>Record Artist</p>
-            </div>
-          </div>
+      <div class="col col-6 pl-5">
+        <a href="\addCollection">
+          <button
+            class="enlarge btn btn-outline-secondary text-white"
+            type="button"
+          >
+            + Add Record to "<%= rowdata[0].collection_name %>"
+          </button>
         </a>
       </div>
     </div>
 
     <div class="row pt-3 text-center pb-5">
+      <% rowdata.forEach((record)=> { %>
+
       <div class="column col-md-6 col-lg-3 text-center pb-4">
-        <a href="\viewRecord" class="getStarted">
-          <div class="card text-dark">
+        <a
+          href="\viewRecord?recordid=<%= record.record_id %>"
+          class="getStarted"
+        >
+          <div class="card card1 text-dark">
             <img
-              class="card-img-top"
-              src="notFound.jpg"
+              class="card-img-top cardImage mx-auto img-thumbnail"
+              src="<%= record.cover_image %>"
               alt="Card image cap"
             />
             <div class="card-body">
-              <strong>Record Title</strong>
-              <p>Record Artist</p>
+              <strong><%= record.record_name %></strong>
+              <p><%= record.artist_name %></p>
             </div>
           </div>
         </a>
       </div>
-
-      <div class="column col-md-6 col-lg-3 pb-4">
-        <a href="\viewRecord" class="getStarted">
-          <div class="card text-dark">
-            <img
-              class="card-img-top"
-              src="notFound.jpg"
-              alt="Card image cap"
-            />
-            <div class="card-body">
-              <strong>Record Title</strong>
-              <p>Record Artist</p>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div class="column col-md-6 col-lg-3 pb-4">
-        <a href="\viewRecord" class="getStarted">
-          <div class="card text-dark">
-            <img
-              class="card-img-top"
-              src="notFound.jpg"
-              alt="Card image cap"
-            />
-            <div class="card-body">
-              <strong>Record Title</strong>
-              <p>Record Artist</p>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div class="column col-md-6 col-lg-3 pb-4">
-        <a href="\viewRecord" class="getStarted">
-          <div class="card text-dark">
-            <img
-              class="card-img-top"
-              src="notFound.jpg"
-              alt="Card image cap"
-            />
-            <div class="card-body">
-              <strong>Record Title</strong>
-              <p>Record Artist</p>
-            </div>
-          </div>
-        </a>
-      </div>
+      <% }) %>
     </div>
   </div>
 </div>
 <!-- Beginning of view collection section -->
 
 <%- include('footer') %>
-

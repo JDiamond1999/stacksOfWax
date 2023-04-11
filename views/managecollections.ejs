@@ -2,166 +2,65 @@
 
 <!-- Beginning of manage collections section -->
 <div class="container">
-    <div class="row">
-      <div class="col col-lg-12 pt-5">
-        <h1>Manage Collections</h1>
-      </div>
-    </div>
-
-    <div class="container pb-5 mb-4">
-      <header class="pb-3 mb-5 border-bottom"></header>
-
-      <div class="row pt-3 pb-5">
-        <div class="col col-6 input-group rounded">
-          <input
-            type="search"
-            class="form-control rounded"
-            placeholder="Search"
-            aria-label="Search"
-            aria-describedby="search-addon"
-          />
-          <span class="input-group-text border-0" id="search-addon">
-            <i class="fas fa-search"></i>
-          </span>
-        </div>
-
-        <div class="col col-6 pl-5">
-          <a href="\addCollection">
-            <button
-              class="enlarge btn btn-outline-secondary text-white"
-              type="button"
-            >
-              + Add New Collection
-            </button>
-          </a>
-        </div>
-      </div>
-
-      <div class="row pt-3 text-center pb-5">
-        <div class="column col-md-6 col-lg-3 text-center pb-4">
-          <a href="\viewCollection" class="getStarted">
-            <div class="card card1 text-dark">
-              <img
-                class="card-img-top"
-                src="notFound.jpg"
-                alt="Card image cap"
-              />
-              <div class="card-body">
-                <strong>Collection Title</strong>
-              </div>
-            </div>
-          </a>
-        </div>
-
-        <div class="column col-md-6 col-lg-3 pb-4">
-          <a href="\viewCollection" class="getStarted">
-            <div class="card card1 text-dark">
-              <img
-                class="card-img-top"
-                src="notFound.jpg"
-                alt="Card image cap"
-              />
-              <div class="card-body">
-                <strong>Collection Title</strong>
-              </div>
-            </div>
-          </a>
-        </div>
-
-        <div class="column col-md-6 col-lg-3 pb-4">
-          <a href="\viewCollection" class="getStarted">
-            <div class="card card1 text-dark">
-              <img
-                class="card-img-top"
-                src="notFound.jpg"
-                alt="Card image cap"
-              />
-              <div class="card-body">
-                <strong>Collection Title</strong>
-              </div>
-            </div>
-          </a>
-        </div>
-
-        <div class="column col-md-6 col-lg-3 pb-4">
-          <a href="\viewCollection" class="getStarted">
-            <div class="card card1 text-dark">
-              <img
-                class="card-img-top"
-                src="notFound.jpg"
-                alt="Card image cap"
-              />
-              <div class="card-body">
-                <strong>Collection Title</strong>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <div class="row pt-3 text-center pb-5">
-        <div class="column col-md-6 col-lg-3 text-center pb-4">
-          <a href="\viewCollection" class="getStarted">
-            <div class="card card1 text-dark">
-              <img
-                class="card-img-top"
-                src="notFound.jpg"
-                alt="Card image cap"
-              />
-              <div class="card-body">
-                <strong>Collection Title</strong>
-              </div>
-            </div>
-          </a>
-        </div>
-
-        <div class="column col-md-6 col-lg-3 pb-4">
-          <a href="\viewCollection" class="getStarted">
-            <div class="card card1 text-dark">
-              <img
-                class="card-img-top"
-                src="notFound.jpg"
-                alt="Card image cap"
-              />
-              <div class="card-body">
-                <strong>Collection Title</strong>
-              </div>
-            </div>
-          </a>
-        </div>
-
-        <div class="column col-md-6 col-lg-3 pb-4">
-          <a href="\viewCollection" class="getStarted">
-            <div class="card card1 text-dark">
-              <img
-                class="card-img-top"
-                src="notFound.jpg"
-                alt="Card image cap"
-              />
-              <div class="card-body">
-                <strong>Collection Title</strong>
-              </div>
-            </div>
-          </a>
-        </div>
-
-        <div class="column col-md-6 col-lg-3 pb-4">
-          <a href="\viewCollection" class="getStarted">
-            <div class="card card1 text-dark">
-              <img
-                class="card-img-top"
-                src="notFound.jpg"
-                alt="Card image cap"
-              />
-              <div class="card-body">
-                <strong>Collection Title</strong>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
+  <div class="row">
+    <div class="col col-lg-12 pt-5">
+      <h1><%= userdata[0].first_name %>'s Collections</h1>
     </div>
   </div>
-  <!-- Beginning of manage collections section -->
 
-  <%- include('footer') %>
+  <div class="container pb-5 mb-4">
+    <header class="pb-3 mb-5 border-bottom"></header>
+
+    <div class="row pt-3 pb-5">
+      <div class="col col-6 input-group rounded">
+        <input
+          type="search"
+          class="form-control rounded"
+          placeholder="Search"
+          aria-label="Search"
+          aria-describedby="search-addon"
+        />
+        <span class="input-group-text border-0" id="search-addon">
+          <i class="fas fa-search"></i>
+        </span>
+      </div>
+
+      <div class="col col-6 pl-5">
+        <a href="\addCollection">
+          <button
+            class="enlarge btn btn-outline-secondary text-white"
+            type="button"
+          >
+            + Add New Collection
+          </button>
+        </a>
+      </div>
+    </div>
+
+    <div class="row pt-3 text-center pb-5">
+      <% rowdata.forEach((collection)=> { %>
+
+      <div class="column col-md-6 col-lg-3 text-center pb-4">
+        <a
+          href="\viewCollection?collectionid=<%= collection.collection_id %>"
+          class="getStarted"
+        >
+          <div class="card card1 text-dark">
+            <img
+              class="card-img-top cardImage mx-auto img-thumbnail"
+              src="<%= collection.collection_image %>"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <strong><%= collection.collection_name %></strong>
+            </div>
+          </div>
+        </a>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+</div>
+<!-- Beginning of manage collections section -->
+
+<%- include('footer') %>

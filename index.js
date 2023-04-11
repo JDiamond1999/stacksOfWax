@@ -27,6 +27,7 @@ const addrecordPR = require(`./routes/post_routes/addrecordPR`);
 const registerPR = require(`./routes/post_routes/registerPR`);
 const signinPR = require(`./routes/post_routes/signinPR`);
 const signupPR = require(`./routes/post_routes/signupPR`);
+const addcollectionPR = require(`./routes/post_routes/addcollectionPR`);
 
 // Middleware (Use)
 app.use(express.static(path.join(__dirname, "./css")));
@@ -62,6 +63,7 @@ app.use(`/`, addrecordPR);
 app.use(`/`, registerPR);
 app.use(`/`, signinPR);
 app.use(`/`, signupPR);
+app.use(`/`, addcollectionPR);
 
 // View Engine Setup
 app.set("view engine", "ejs");
