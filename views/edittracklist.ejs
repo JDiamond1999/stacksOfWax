@@ -14,44 +14,50 @@
     </h3>
 
     <% rowdata.forEach(element => { %>
-    <form action="removetrack?recordid=<%= element.record_id %>" method="POST">
-      <div class="input-group input-group-lg mb-3">
-        <input
-          type="text"
-          class="form-control"
-          value="<%= element.track_name %>"
-          aria-label="track name"
-          aria-describedby="basic-addon2"
-          name="trackname"
-        />
-        <div class="input-group-append">
-          <button
-            class="buttonDefault btn btn-danger text-white"
-            type="submit"
-            data-bs-toggle="tooltip"
-            data-bs-placement="right"
-            title="Remove Track from Record"
-            name="edit"
-            value="remove"
-          >
-            -
-          </button>
-          <button
-            class="buttonSuccess btn btn-danger text-white"
-            type="submit"
-            data-bs-toggle="tooltip"
-            data-bs-placement="right"
-            title="Update Track Information"
-            name="edit"
-            value="update"
-          >
-            Update
-          </button>
-          <!-- Passing track_id through a hidden div for each input field -->
-          <input type="hidden" name="trackid" value="<%= element.track_id %>" />
-        </div>
-      </div>
-    </form>
+      
+      <% if (element.track_name !== `Tracklist:`) { %>
+       
+        <form action="removetrack?recordid=<%= element.record_id %>" method="POST">
+          <div class="input-group input-group-lg mb-3">
+            <input
+              type="text"
+              class="form-control"
+              value="<%= element.track_name %>"
+              aria-label="track name"
+              aria-describedby="basic-addon2"
+              name="trackname"
+            />
+            <div class="input-group-append">
+              <button
+                class="buttonDefault btn btn-danger text-white"
+                type="submit"
+                data-bs-toggle="tooltip"
+                data-bs-placement="right"
+                title="Remove Track from Record"
+                name="edit"
+                value="remove"
+              >
+                -
+              </button>
+              <button
+                class="buttonSuccess btn btn-danger text-white"
+                type="submit"
+                data-bs-toggle="tooltip"
+                data-bs-placement="right"
+                title="Update Track Information"
+                name="edit"
+                value="update"
+              >
+                Update
+              </button>
+              <!-- Passing track_id through a hidden div for each input field -->
+              <input type="hidden" name="trackid" value="<%= element.track_id %>" />
+            </div>
+          </div>
+        </form>
+
+      <% } %>
+    
     <% }) %>
 
     <form action="addtrack?recordid=<%= rowdata[0].record_id %>" method="POST">

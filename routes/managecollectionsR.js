@@ -10,8 +10,9 @@ managecollectionsR.get("/managecollections", function (req, res) {
     if (sessionobj.authen) {
 
         let userid = sessionobj.authen;
+
         // chris says dont use select * from as it increases loading time/dont need resources
-        let readrecords =
+        let readcollections =
             `SELECT * 
             FROM user
             INNER JOIN collection
@@ -22,7 +23,7 @@ managecollectionsR.get("/managecollections", function (req, res) {
             FROM user
             WHERE user_id = ? `;
 
-        connection.query(readrecords, [userid, userid], (err, rows) => {
+        connection.query(readcollections, [userid, userid], (err, rows) => {
             if (err) throw err;
             let rowdata = rows[0];
             let userdata = rows[1];

@@ -12,8 +12,8 @@ addcollectionPR.post("/addcollection", (req, res) => {
     let title = req.body.title;
     let desc = req.body.description;
     let record_id = req.body.record;
-    
-   
+
+
 
     let insertcollection =
         `INSERT INTO collection
@@ -33,17 +33,8 @@ addcollectionPR.post("/addcollection", (req, res) => {
             if (err) throw err;
         });
 
-        
+    res.render(`managecollections`);
 
-    if (sessionobj.authen) {
-
-    res.render("managecollections");
-
-    } else {
-        res.render('signin');
-    }
-
-    
 });
 
 

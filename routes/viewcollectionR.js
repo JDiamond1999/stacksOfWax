@@ -26,13 +26,18 @@ viewcollectionR.get("/viewcollection", function (req, res) {
             
             SELECT *
             FROM user
-            WHERE user_id = ? `;
+            WHERE user_id = ?;
+            
+            SELECT record_name, record_id
+            FROM record
+            WHERE user_id=?;`;
 
-        connection.query(readrecords, [showid, userid], (err, rows) => {
+        connection.query(readrecords, [showid, userid, userid], (err, rows) => {
             if (err) throw err;
             let rowdata = rows[0];
             let userdata = rows[1];
-            res.render("viewcollection", { rowdata, userdata });
+            let userrecords = rows[2];
+            res.render("viewcollection", { rowdata, userdata, userrecords });
         });
 
     } else {

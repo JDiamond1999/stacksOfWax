@@ -1,64 +1,93 @@
 <%- include('navbar', {active : "view collection"}) %>
 
-<!-- Beginning of view collection section -->
-<div class="container">
-  <div class="row">
-    <div class="col col-lg-12 pt-5">
-      <h1><%= userdata[0].first_name%>'s Collections / <%= rowdata[0].collection_name %></h1>
+<div class="row d-flex justify-content-center align-items-left h-100 pt-5 pb-5">
+  <div class="column col-8 col-md-6 col-xl-4 pt-1 mt-1 mb-1 pt-3 mt-3">
+    <div class="card mx-auto" style="width: 15rem">
+      <img
+        class="card-img-top"
+        src="<%= rowdata[0].collection_image %>"
+        alt="Card image cap"
+      />
     </div>
-  </div>
+    <h3 class="pb-4 pt-4 text-center">
+      Edit Records in: <%= rowdata[0].collection_name %>
+    </h3>
 
-  <div class="container pb-5 mb-4">
-    <header class="pb-3 mb-5 border-bottom"></header>
-
-    <div class="row pt-3 pb-5">
-      <div class="col col-1">
-        <a href="\manageCollections">
-          <button
-            class="buttonDefault btn btn-outline-secondary text-white"
-            type="button"
-          >
-            <- Back
-          </button>
-        </a>
+    <% rowdata.forEach(element => { %>
+    <div class="row d-flex justify-content-center">
+      <div class="column col-2">
+        <div class="card mx-auto" style="width: 3rem">
+          <img
+            class="card-img-top"
+            src="<%= element.cover_image %>"
+            alt="Card image cap"
+          />
+        </div>
       </div>
-      <div class="col col-6 pl-5">
-        <a href="\addCollection">
-          <button
-            class="enlarge btn btn-outline-secondary text-white"
-            type="button"
-          >
-            + Add Record to "<%= rowdata[0].collection_name %>"
-          </button>
-        </a>
-      </div>
-    </div>
 
-    <div class="row pt-3 text-center pb-5">
-      <% rowdata.forEach((record)=> { %>
-
-      <div class="column col-md-6 col-lg-3 text-center pb-4">
-        <a
-          href="\viewRecord?recordid=<%= record.record_id %>"
-          class="getStarted"
+      <div class="column col-8">
+        <form
+          action="removerecord?recordid=<%= element.record_id %>"
+          method="POST"
         >
-          <div class="card card1 text-dark">
-            <img
-              class="card-img-top cardImage mx-auto img-thumbnail"
-              src="<%= record.cover_image %>"
-              alt="Card image cap"
+          <div class="input-group input-group-lg mb-3">
+            <input
+              type="text"
+              class="form-control"
+              value="<%= element.record_name %>"
+              aria-label="track name"
+              aria-describedby="basic-addon2"
+              name="trackname"
             />
-            <div class="card-body">
-              <strong><%= record.record_name %></strong>
-              <p><%= record.artist_name %></p>
+            <div class="input-group-append">
+              <button
+                class="buttonDefault btn btn-danger text-white"
+                type="submit"
+                data-bs-toggle="tooltip"
+                data-bs-placement="right"
+                title="Remove Track from Record"
+                name="edit"
+                value="remove"
+              >
+                -
+              </button>
+              <!-- Passing track_id through a hidden div for each input field -->
             </div>
           </div>
-        </a>
+        </form>
       </div>
-      <% }) %>
+    </div>
+    <% }) %>
+    <div class="row d-flex justify-content-center">
+      <form
+        action="addtocollection?collectionid=<%= rowdata[0].collection_id %>"
+        method="POST"
+      >
+        <div class="form-outline mb-3 pt-3"></div>
+        <select
+          class="form-select form-select mb-3 p-2"
+          aria-label=".form-select-lg example"
+          name="record"
+        >
+          <option selected>--Add a Record--</option>
+          <% userrecords.forEach(record => { %>
+          <option value="<%= record.record_id %>">
+            <%= record.record_name %>
+          </option>
+          <% }) %>
+        </select>
+        <button
+          class="enlarge btn btn-danger text-white"
+          type="submit"
+          data-bs-toggle="tooltip"
+          data-bs-placement="right"
+          title="Remove Track from Record"
+        >
+          +
+        </button>
+      </form>
     </div>
   </div>
 </div>
-<!-- Beginning of view collection section -->
 
 <%- include('footer') %>
