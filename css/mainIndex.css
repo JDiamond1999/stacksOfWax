@@ -108,6 +108,18 @@ section {
   border-color: grey;
 }
 
+.buttonSearch {
+  background-color: white;
+}
+
+.buttonSearch {
+  transition: transform 0.2s;
+}
+
+.buttonSearch:hover {
+  transform: scale(1.018);
+}
+
 @media (max-width: 991px) {
   .cardImage {
     width: 17rem;

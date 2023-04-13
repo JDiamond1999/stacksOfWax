@@ -27,7 +27,7 @@
 
       <div class="column col-8">
         <form
-          action="removerecord?recordid=<%= element.record_id %>"
+          action="removefromcollection?collectionid=<%= element.collection_id %>"
           method="POST"
         >
           <div class="input-group input-group-lg mb-3">
@@ -45,13 +45,14 @@
                 type="submit"
                 data-bs-toggle="tooltip"
                 data-bs-placement="right"
-                title="Remove Track from Record"
+                title="Remove Record from Collection"
                 name="edit"
                 value="remove"
               >
                 -
               </button>
               <!-- Passing track_id through a hidden div for each input field -->
+              <input type="hidden" name="recordid" value="<%= element.record_id %>" />
             </div>
           </div>
         </form>
@@ -81,7 +82,7 @@
           type="submit"
           data-bs-toggle="tooltip"
           data-bs-placement="right"
-          title="Remove Track from Record"
+          title="Add Record to Collection"
         >
           +
         </button>

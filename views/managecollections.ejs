@@ -38,6 +38,14 @@
     </div>
 
     <div class="row pt-3 text-center pb-5">
+
+      <% if (rowdata.length == 0) { %>
+        <div class = "p-5 m-5 mx-auto text-muted">
+          <h1>No Collections Found</h1>
+          <h1 class="pt-5 mt-2">☹</h1>
+        </div>
+        <% } %>
+
       <% rowdata.forEach((collection)=> { %>
 
       <div class="column col-md-6 col-lg-3 text-center pb-4">
@@ -53,6 +61,7 @@
             />
             <div class="card-body">
               <strong><%= collection.collection_name %></strong>
+              <p class = "pt-3"> Curated By : Me</p>
             </div>
           </div>
         </a>

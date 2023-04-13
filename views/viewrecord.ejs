@@ -22,7 +22,23 @@
           <form>
             <!-- Title -->
             <div class="form-outline mb-4 text-center">
-              <h3 class="pb-4"><%= rowdata[0].record_name %></h3>
+              <h3 class="pb-2"><%= rowdata[0].record_name %></h3>
+              <div class="pb-5 mb-3">
+                <form
+                  action="removerecord?recordid=<%= rowdata[0].record_id %>"
+                  method="POST"
+                >
+                  <button
+                    class="enlarge btn btn-danger text-white"
+                    type="submit"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="right"
+                    title="Remove Record"
+                  >
+                    - REMOVE RECORD
+                  </button>
+                </form>
+              </div>
               <h5 class="pb-1">
                 <p class="pinktext font-weight-bold">Artist Name:</p>
                 <p><%= rowdata[0].artist_name %></p>
@@ -62,7 +78,7 @@
 
                     <% }) %>
                   </ul>
-                 
+
                   <a href="\edittracklist?recordid=<%= rowdata[0].record_id %>">
                     <button
                       class="enlarge btn btn-outline-secondary text-white"
@@ -71,7 +87,6 @@
                       Edit Tracklist
                     </button>
                   </a>
-                  
                 </div>
               </div>
             </div>

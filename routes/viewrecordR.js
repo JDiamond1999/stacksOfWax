@@ -32,7 +32,6 @@ viewrecordR.get("/viewrecord", function (req, res) {
             if (err) throw err;
             let rowdata = rows[0];
             let genredata = rows[1];
-            console.log(rowdata);
             res.render(`viewrecord`, { rowdata, genredata });
         });
 
