@@ -1,0 +1,77 @@
+<%- include('navbar', {active: "search collections"}) %>
+
+<!-- Beginning of manage collections section -->
+<div class="container">
+  <div class="row">
+    <div class="col col-lg-12 pt-5">
+      <h1>Search all Collections</h1>
+    </div>
+  </div>
+
+  <div class="container pb-5 mb-4">
+    <header class="pb-3 mb-5 border-bottom"></header>
+    <form action="searchcollections" method="POST">
+      <div class="row pt-3 pb-5">
+
+        <div class="col col-xs-12 col-lg-7 input-group rounded">
+          <input
+            type="searchphrase"
+            name="searchphrase"
+            class="form-control rounded"
+            placeholder="Search all Collections"
+            aria-label="Search"
+            aria-describedby="search-addon"
+          />
+
+          <button class="buttonSearch btn">
+            <span
+              class="input-group-text border-0"
+              id="search-addon"
+              type="submit"
+              name="search"
+            >
+              <i class="fas fa-search"></i>
+            </span>
+          </button>
+        </form>
+        </div>
+      </div>
+
+    <div class="row pt-3 text-center pb-5">
+      <% if (rowdata.length == 0) { %>
+      <div class="p-5 m-5 mx-auto text-muted">
+        <h1>No Collections Found</h1>
+        <h1 class="pt-5 mt-2">☹</h1>
+      </div>
+      <% } %> <% rowdata.forEach((collection)=> { %>
+
+      <div class="column col-md-6 col-lg-3 text-center pb-4">
+        <a
+          href="\viewOthersCollection?collectionid=<%= collection.collection_id %>"
+          class="getStarted"
+        >
+          <div class="card card1 text-dark">
+            <img
+              class="card-img-top cardImage mx-auto img-thumbnail"
+              src="<%= collection.collection_image %>"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <strong><%= collection.collection_name %></strong>
+              <p class="pull-right pt-3">
+                <span class="call">Curated By: </span>
+                <span class="pinktext"
+                  ><%= collection.username %></span
+                >
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+</div>
+<!-- Beginning of manage collections section -->
+
+<%- include('footer') %>

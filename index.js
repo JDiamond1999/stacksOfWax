@@ -19,6 +19,8 @@ const addrecordR = require(`./routes/addrecordR`);
 const edittracklistR = require(`./routes/edittracklistR`);
 const managerecordsR = require(`./routes/managerecordsR`);
 const viewrecordR = require(`./routes/viewrecordR`);
+const searchcollectionsR = require(`./routes/searchcollectionsR`);
+const viewotherscollectionR = require(`./routes/viewotherscollectionR`);
 
 // Post routes (Require)
 const addtrackPR = require(`./routes/post_routes/addtrackPR`);
@@ -32,6 +34,8 @@ const addtocollectionPR = require(`./routes/post_routes/addtocollectionPR`);
 const removefromcollectionPR = require(`./routes/post_routes/removefromcollectionPR`);
 const removerecordPR = require(`./routes/post_routes/removerecordPR`);
 const searchmyrecordsPR = require(`./routes/post_routes/searchmyrecordsPR`);
+const searchmycollectionsPR = require(`./routes/post_routes/searchmycollectionsPR`);
+const searchcollectionsPR = require(`./routes/post_routes/searchcollectionsPR`);
 
 // Middleware (Use)
 app.use(express.static(path.join(__dirname, "./css")));
@@ -59,6 +63,8 @@ app.use(`/`, addrecordR);
 app.use(`/`, edittracklistR);
 app.use(`/`, managerecordsR);
 app.use(`/`, viewrecordR);
+app.use(`/`, searchcollectionsR);
+app.use(`/`, viewotherscollectionR);
 
 // Post Routes (Use)
 app.use(`/`, addtrackPR);
@@ -72,6 +78,8 @@ app.use(`/`, addtocollectionPR);
 app.use(`/`, removefromcollectionPR);
 app.use(`/`, removerecordPR);
 app.use(`/`, searchmyrecordsPR);
+app.use(`/`, searchmycollectionsPR);
+app.use(`/`, searchcollectionsPR);
 
 // View Engine Setup
 app.set("view engine", "ejs");
