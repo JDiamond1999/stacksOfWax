@@ -2,9 +2,16 @@
 
 <!-- Beginning of Login Section -->
 <section class="vh-100">
-  <div class="container container-fluid h-custom pt-5 pb-5 mb-5 mt-5">
+  <div class="container container-fluid h-custom pt-2 pb-2 mb-5 mt-5">
     <div class="row d-flex justify-content-center align-items-center h-100">
+      <% if (userdata.length > 0) { %>
+        <h2 class="pb-5 mb-4 text-center">
+          <span class="pinktext">Currently signed in as </span>
+          <span><%= userdata[0].username %></span>
+        </h2>
+        <% } %>
       <div class="column col-md-9 col-lg-7 mb-4 mb-sm-0">
+        
         <img
           src="signUpRecord.jpg"
           class="img-fluid rounded mx-auto d-block"
@@ -40,19 +47,7 @@
             <label class="form-label" for="form3Example4">Password</label>
           </div>
 
-          <div class="d-flex justify-content-between align-items-center">
-            <!-- Checkbox -->
-            <div class="form-check mb-0">
-              <input
-                class="form-check-input me-2"
-                type="checkbox"
-                id="form2Example3"
-              />
-              <label class="form-check-label" for="form2Example3">
-                Remember me
-              </label>
-            </div>
-          </div>
+          
 
           <div class="text-center text-lg-start mt-4 pt-2">
             <button

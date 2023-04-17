@@ -36,6 +36,7 @@ const removerecordPR = require(`./routes/post_routes/removerecordPR`);
 const searchmyrecordsPR = require(`./routes/post_routes/searchmyrecordsPR`);
 const searchmycollectionsPR = require(`./routes/post_routes/searchmycollectionsPR`);
 const searchcollectionsPR = require(`./routes/post_routes/searchcollectionsPR`);
+const addreviewPR = require(`./routes/post_routes/addreviewPR`);
 
 // Middleware (Use)
 app.use(express.static(path.join(__dirname, "./css")));
@@ -80,6 +81,7 @@ app.use(`/`, removerecordPR);
 app.use(`/`, searchmyrecordsPR);
 app.use(`/`, searchmycollectionsPR);
 app.use(`/`, searchcollectionsPR);
+app.use(`/`, addreviewPR);
 
 // View Engine Setup
 app.set("view engine", "ejs");

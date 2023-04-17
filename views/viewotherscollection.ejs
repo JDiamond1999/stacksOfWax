@@ -84,32 +84,117 @@
       <span><%= rowdata[0].collection_name %></span>
     </h3>
 
-    <% reviews.forEach(review => { %>
-      <div class="card mb-5">
-        <div class="card-header bg-transparent">
-          <div class="column col-8">
-            <div class="card" style="width: 4rem">
-              <img
-                class="card-img-top"
-                src="<%= review.profile_image %>"
-                alt="Card image cap"
-              />
-            </div>
-            <div class="pt-2">
-              <p class="pull-right pt-1">
-                <span class="pinktext"><%= review.username %></span>
-                <span> says...</span>
-              </p>
-            </div>
+    <% if (userdata.length > 0) { %>
+    <div class="card mb-5">
+      <div class="card-header bg-transparent">
+        <div class="column col-8">
+          <div class="card" style="width: 4rem">
+            <img
+              class="card-img-top"
+              src="<%= userdata[0].profile_image %>"
+              alt="Card image cap"
+            />
+          </div>
+          <div class="pt-2">
+            <p class="pull-right pt-1">
+              <span class="pinktext"><%= userdata[0].username %></span>
+              <span> says...</span>
+            </p>
           </div>
         </div>
-        <div class="card-body p-4 m-2">
-          <h5 class="card-title"><%= review.review_title %></h5>
-          <p class="card-text"><%= review.review_desc %></p>
+      </div>
+      <div class="card-body p-4 m-2">
+        <form
+          action="addreview?collectionid=<%= rowdata[0].collection_id %>"
+          method="POST"
+        >
+          <!-- Title input -->
+          <div class="form-outline mb-4">
+            <input
+              type="title"
+              id="form3Example3"
+              class="form-control form-control-lg"
+              placeholder="Enter a title for your review"
+              name="title"
+            />
+          </div>
+
+          <div class="form-group">
+            <textarea
+              name="description"
+              class="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"
+              placeholder="Enter some details for your review"
+            ></textarea>
+          </div>
+
+          <div class="form-outline mt-2"></div>
+          <span>
+            <select
+              class="form-select form-select mb-3 p-2"
+              aria-label=".form-select-lg example"
+              name="rating"
+            >
+              <option selected>--Star Rating--</option>
+              <option>0</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </span>
+          <span class = "pinktext"> &emsp;*Star Rating is Mandatory</span>
+
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button
+              type="submit"
+              value="send"
+              class="button1 btn btn-lg text-white"
+              style="padding-left: 2.5rem; padding-right: 2.5rem"
+            >
+              + Post Review
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <% } %> <% reviews.forEach(review => { %>
+    <div class="card mb-5">
+      <div class="card-header bg-transparent">
+        <div class="column col-8">
+          <div class="card" style="width: 4rem">
+            <img
+              class="card-img-top"
+              src="<%= review.profile_image %>"
+              alt="Card image cap"
+            />
+          </div>
+          <div class="pt-2">
+            <p class="pull-right pt-1">
+              <span class="pinktext"><%= review.username %></span>
+              <span> says...</span>
+            </p>
+          </div>
         </div>
       </div>
+      <div class="card-body p-4 m-2">
+        <h5 class="card-title"><%= review.review_title %></h5>
+        <p class="card-text"><%= review.review_desc %></p>
+        <h4 class="card-title pt-3">
+          <% for( let index = 0; index < review.star_rating; index++ ) { %>
+          <span class="pinktext">★ </span>
+          <% } %> <% for( let index = 0; index < 5-review.star_rating; index++ )
+          { %>
+          <span class="pinktext">☆ </span>
+          <% } %>
+          <span> - <%= review.star_rating %> Star Rating</span>
+        </h4>
+      </div>
+    </div>
     <% }) %>
-    
   </div>
 </div>
 
