@@ -9,7 +9,14 @@
           <span class="pinktext">Currently signed in as </span>
           <span><%= userdata[0].username %></span>
         </h2>
-        <% } %>
+        <% } else { %> 
+          <div class="column col-12">
+          <h2 class="pb-5 mb-4 text-center">
+            <span class="pinktext">Sign in to </span>
+            <span> get started!</span>
+          </h2>
+        </div>
+          <% } %>
       <div class="column col-md-9 col-lg-7 mb-4 mb-sm-0">
         
         <img

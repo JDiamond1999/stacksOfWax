@@ -7,12 +7,13 @@ viewrecordR.get("/viewrecord", function (req, res) {
     // let recordid = req.params.recordid;
     let showid = req.query.recordid;
 
+
     let sessionobj = req.session;
+    let userid = sessionobj.authen;
 
-    if (sessionobj.authen) {
 
-        let readsql =
-            `SELECT cover_image, record_name, artist_name, record_label, year_of_release, track_name, record.record_id
+    let readsql =
+        `SELECT cover_image, record_name, artist_name, record_label, year_of_release, track_name, record.record_id
         FROM track
         INNER JOIN record_track
         ON track.track_id = record_track.track_id
@@ -26,18 +27,23 @@ viewrecordR.get("/viewrecord", function (req, res) {
         FROM genre
         INNER JOIN record
         ON genre.genre_id = record.genre_id
-        WHERE record.record_id = ?`;
+        WHERE record.record_id = ?;
+        
+        SELECT *
+        FROM user
+        INNER JOIN record
+        ON user.user_id = record.user_id
+        WHERE record_id = ?`;
 
-        connection.query(readsql, [showid, showid], (err, rows) => {
-            if (err) throw err;
-            let rowdata = rows[0];
-            let genredata = rows[1];
-            res.render(`viewrecord`, { rowdata, genredata });
-        });
+    connection.query(readsql, [showid, showid, showid], (err, rows) => {
+        if (err) throw err;
+        let rowdata = rows[0];
+        let genredata = rows[1];
+        let userdata = rows[2];
+        res.render(`viewrecord`, { rowdata, genredata, userdata, userid});
+    });
 
-    } else {
-        res.render('signin');
-    }
+
 });
 
 module.exports = viewrecordR;

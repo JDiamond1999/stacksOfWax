@@ -33,7 +33,8 @@ managerecordsR.get("/managerecords", function (req, res) {
         });
 
     } else {
-        res.render('signin');
+        let userdata = [];
+        res.render('signin', {userdata});
     }
 
 

@@ -19,26 +19,30 @@
         <div
           class="column col-md-8 col-lg-6 col-xl-4 pt-1 mt-1 mb-1 pt-sm-3 mt-sm-3 mx-auto"
         >
-          <form>
-            <!-- Title -->
-            <div class="form-outline mb-4 text-center">
-              <h3 class="pb-2"><%= rowdata[0].record_name %></h3>
-              <div class="pb-5 mb-3">
-                <form
-                  action="removerecord?recordid=<%= rowdata[0].record_id %>"
-                  method="POST"
+        <div class="form-outline mb-4 text-center">
+          <h3 class="pb-2"><%= rowdata[0].record_name %></h3>
+          <% if (userdata[0].user_id == userid) { %>
+            <div class="pb-5 mb-3">
+              <form
+                action="removerecord?recordid=<%= rowdata[0].record_id %>"
+                method="POST"
+              >
+                <button
+                  class="enlarge btn btn-danger text-white"
+                  type="submit"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="right"
+                  title="Remove Record"
                 >
-                  <button
-                    class="enlarge btn btn-danger text-white"
-                    type="submit"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="right"
-                    title="Remove Record"
-                  >
-                    - REMOVE RECORD
-                  </button>
-                </form>
-              </div>
+                  - REMOVE RECORD
+                </button>
+              </form>
+            <form>
+              <!-- Title -->
+              
+                </div>
+          <% } %>
+          
               <h5 class="pb-1">
                 <p class="pinktext font-weight-bold">Artist Name:</p>
                 <p><%= rowdata[0].artist_name %></p>
@@ -74,19 +78,26 @@
                   <ul class="list-unstyled">
                     <% rowdata.forEach(track => { %>
 
+                      <% if (track.track_name == `Tracklist:`) { %>
+                       <strong class = "pinktext"> Tracklist:</strong>
+                      <% } else { %>
+                       
                     <li><%= track.track_name %></li>
 
-                    <% }) %>
+                    <% }}) %>
                   </ul>
 
-                  <a href="\edittracklist?recordid=<%= rowdata[0].record_id %>">
-                    <button
-                      class="enlarge btn btn-outline-secondary text-white"
-                      type="button"
-                    >
-                      Edit Tracklist
-                    </button>
-                  </a>
+                  <% if (userdata[0].user_id == userid) { %>
+                    <a href="\edittracklist?recordid=<%= rowdata[0].record_id %>">
+                      <button
+                        class="enlarge btn btn-outline-secondary text-white"
+                        type="button"
+                      >
+                        Edit Tracklist
+                      </button>
+                    </a>
+                  <% } %>
+                  
                 </div>
               </div>
             </div>

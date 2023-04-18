@@ -2,7 +2,7 @@
     "host" : "localhost",
     "user" : "root",
     "password" : "",
-    "database" : "stacks_of_wax_1",
+    "database" : "stacks_of_wax_2",
     "port" : "3306",
     "multipleStatements" : "true"
 }

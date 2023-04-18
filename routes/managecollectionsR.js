@@ -31,7 +31,8 @@ managecollectionsR.get("/managecollections", function (req, res) {
         });
 
     } else {
-        res.render('signin');
+        let userdata = [];
+        res.render('signin', {userdata});
     }
 });
 

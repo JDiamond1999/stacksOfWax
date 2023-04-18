@@ -11,13 +11,14 @@ signupPR.post("/signup", (req, res) => {
     let last_name = req.body.last_name_field;
     let email = req.body.email_field;
     let password = req.body.password_field;
+    let photo = req.body.photo_field;
 
     let insertuser =
     `INSERT INTO user 
-    (user_id, username, first_name, last_name, email_address, password) 
-    VALUES (NULL, ?, ?, ?, ?, ?);`
+    (user_id, username, first_name, last_name, email_address, password, profile_image) 
+    VALUES (NULL, ?, ?, ?, ?, ?, ?);`
 
-    connection.query(insertuser, [username, first_name, last_name, email, password], (err, rows) => {
+    connection.query(insertuser, [username, first_name, last_name, email, password, photo], (err, rows) => {
         if (err) throw err;
         res.redirect(`/signin`);
     });
