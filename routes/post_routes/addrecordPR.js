@@ -24,8 +24,8 @@ addrecordPR.post("/addrecord", (req, res) => {
         SET @artistid = LAST_INSERT_ID();
   
         INSERT INTO record
-        (record_name, cover_image, year_of_release, record_label, record_likes, genre_id, artist_id, user_id )
-        VALUES( ? , ? , ? , ? , 0 , ? , @artistid, ? );
+        (record_name, cover_image, year_of_release, record_label, genre_id, artist_id, user_id )
+        VALUES( ? , ? , ? , ? , ? , @artistid, ? );
         
         SET @recordid = LAST_INSERT_ID();
         

@@ -13,6 +13,8 @@
     <form action="searchcollections" method="POST">
       <div class="row pt-3 pb-5">
 
+        
+
         <div class="col col-xs-12 col-lg-7 input-group rounded">
           <input
             type="searchphrase"
@@ -33,9 +35,11 @@
               <i class="fas fa-search"></i>
             </span>
           </button>
+         
         </form>
         </div>
       </div>
+      
 
     <div class="row pt-3 text-center pb-5">
       <% if (rowdata.length == 0) { %>
@@ -64,6 +68,7 @@
                   ><%= collection.username %></span
                 >
               </p>
+              <p class = "pinktext">♥      <%= collection.collection_likes %> likes</p>
             </div>
           </div>
         </a>

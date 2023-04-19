@@ -9,11 +9,25 @@
         alt="Card image cap"
       />
     </div>
-    <h3 class="pull-right pb-2 pt-5 text-center">
-      <span><%= rowdata[0].collection_name %></span>
+    <h3 class="pull-right pt-5 text-center">
+
+      <span><%= rowdata[0].collection_name %> 
+        <% if (likedstatus.length > 0 && userdata.length > 0) { %>
+          <a href="unlikecollection?collectionid=<%= rowdata[0].collection_id %>"
+            class = "pl-4 pinktext"
+            title="Unlike `<%= rowdata[0].collection_name %>` Collection">♥ </a>
+            
+        <% } else if(userdata.length >0){ %> 
+          <a href="likecollection?collectionid=<%= rowdata[0].collection_id %>"
+            class = "pl-4 pinktext"
+            title="Like `<%= rowdata[0].collection_name %>` Collection">♡</a>
+          <% } %>
+          <p class="pinktext pt-3"><%= likecount %> likes</p>
+        </span>
+        
     </h3>
     <h5 class="pb-1">
-      <p class="pull-right pt-2 text-center">
+      <p class="pull-right text-center">
         <span class="pinktext">Curated By:</span>
         <span><%= rowdata[0].username %></span>
       </p>

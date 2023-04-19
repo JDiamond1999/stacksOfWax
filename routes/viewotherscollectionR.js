@@ -35,15 +35,29 @@ viewotherscollectionR.get("/viewotherscollection", function (req, res) {
             FROM review
             INNER JOIN user
             ON review.user_id = user.user_id
-            WHERE collection_id = ?`;
+            WHERE collection_id = ?;
 
-    connection.query(readrecords, [showid, userid, userid, showid], (err, rows) => {
+            SELECT * FROM
+            user_liked_collection
+            INNER JOIN liked_collection
+            ON user_liked_collection.liked_collection_id = liked_collection.liked_collection_id
+            WHERE user_liked_collection.user_id = ? AND liked_collection.collection_id = ?;
+            
+            SELECT COUNT(*)
+            FROM user_liked_collection
+            INNER JOIN liked_collection
+            ON user_liked_collection.liked_collection_id = liked_collection.liked_collection_id
+            WHERE liked_collection.collection_id = ?;`;
+
+    connection.query(readrecords, [showid, userid, userid, showid, userid, showid, showid], (err, rows) => {
         if (err) throw err;
         let rowdata = rows[0];
         let userdata = rows[1];
         let userrecords = rows[2];
         let reviews = rows[3];
-        res.render("viewotherscollection", { rowdata, userdata, userrecords, reviews });
+        let likedstatus = rows[4];
+        let likecount = rows[5][0][`COUNT(*)`];
+        res.render("viewotherscollection", { rowdata, userdata, userrecords, reviews, likedstatus, likecount });
     });
 
 
