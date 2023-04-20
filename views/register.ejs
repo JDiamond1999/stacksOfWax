@@ -1,4 +1,8 @@
-<%- include('navbar', {active : "register"}) %>
+<% if (userdata.length > 0) { %>
+  <%- include('membernavbar', {active: "register"}) %>
+  <% } else {%> 
+  <%- include('navbar', {active: "register"}) %>
+  <% } %>
 
 <!-- Beginning of Login Section -->
 <section class="vh-100 bg-image">

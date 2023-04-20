@@ -1,4 +1,8 @@
+<% if (userdata.length > 0) { %>
+<%- include('membernavbar', {active: "sign in"}) %>
+<% } else {%> 
 <%- include('navbar', {active: "sign in"}) %>
+<% } %>
 
 <!-- Beginning of Login Section -->
 <section class="vh-100">

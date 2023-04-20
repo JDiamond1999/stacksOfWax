@@ -1,4 +1,8 @@
-<%- include('navbar', {active: "search collections"}) %>
+<% if (userdata.length > 0) { %>
+  <%- include('membernavbar', {active: "search collections"}) %>
+  <% } else {%> 
+  <%- include('navbar', {active: "search collections"}) %>
+  <% } %>
 
 <!-- Beginning of manage collections section -->
 <div class="container">

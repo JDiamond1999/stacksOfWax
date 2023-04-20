@@ -1,4 +1,5 @@
-<%- include('navbar', {active: "index"}) %>
+<% if (userdata.length > 0) { %> <%- include('membernavbar', {active: "index"})
+%> <% } else {%> <%- include('navbar', {active: "index"}) %> <% } %>
 
 <div class="container">
   <div class="row">
@@ -22,12 +23,12 @@
         Stacks of Wax is a website that connects music lovers with vinyl
         records. It provides a platform for users to discover and explore new
         and vintage albums. The website allows users to view album information,
-        including tracklists, artwork, and other record details. Stacks of Wax also
-        features a comprehensive database of vinyl records, making it easy for
-        users to find what they're looking for. In addition to browsing collections and records,
-        users can leave reviews and ratings on collections that other users have curated.
-        This helps other users make informed decisions about what records to add
-        to their collection.<br /><br />
+        including tracklists, artwork, and other record details. Stacks of Wax
+        also features a comprehensive database of vinyl records, making it easy
+        for users to find what they're looking for. In addition to browsing
+        collections and records, users can leave reviews and ratings on
+        collections that other users have curated. This helps other users make
+        informed decisions about what records to add to their collection.<br /><br />
         The website is user-friendly and designed for easy navigation, making it
         accessible to both vinyl enthusiasts and newcomers to the format. Stacks
         of Wax also offers recommendations based on users searches. Users can
@@ -38,6 +39,7 @@
       </p>
     </div>
 
+    <% if (userdata.length == 0) { %>
     <div
       class="column col-md-12 col-lg-5 d-flex flex-wrap align-items-center text-center justify-content-center pb-4 pl-lg-5 bl-lg-5"
     >
@@ -56,6 +58,27 @@
         </div>
       </a>
     </div>
+    <% } else { %>
+    <div
+      class="column col-md-12 col-lg-5 d-flex flex-wrap align-items-center text-center justify-content-center pb-4 pl-lg-5 bl-lg-5"
+    >
+      <a href="\addrecord" class="getStarted">
+        <div class="card1 card text-dark" style="width: 28rem">
+          <img
+            class="card-img-top"
+            src="koopRecords.webp"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <p>
+              <strong class="pinktext">Hey <%= userdata[0].username %>!</strong>
+            </p>
+            <strong>Try Adding a Record of your Own!</strong>
+          </div>
+        </div>
+      </a>
+    </div>
+    <% } %>
   </div>
 </div>
 
@@ -70,7 +93,12 @@
         Create and share collections easily by uploading your vinyls today!
       </p>
       <div class="container pl-3">
-        <a href="\signin">
+        <% if (userdata.length > 0) { %>
+        <a href="\managerecords">
+        <% } else {%>
+          <a href="\signin">
+          <% } %>
+
           <button
             class="enlarge btn btn-outline-secondary text-white"
             type="button"
@@ -90,7 +118,11 @@
           Review and like others collections in our reviews section. Simply make
           an account to get started!
         </p>
-        <a href="\signin">
+        <% if (userdata.length > 0) { %>
+          <a href="\searchcollections">
+          <% } else {%>
+            <a href="\signin">
+            <% } %>
           <button
             class="enlarge btn btn-outline-secondary text-white"
             type="button"
@@ -108,7 +140,11 @@
           Search our extensive collections by checking out our many different
           genres!
         </p>
-        <a href="\signin">
+        <% if (userdata.length > 0) { %>
+          <a href="\searchcollections">
+          <% } else {%>
+            <a href="\signin">
+            <% } %>
           <button
             class="enlarge btn btn-outline-secondary text-white"
             type="button"

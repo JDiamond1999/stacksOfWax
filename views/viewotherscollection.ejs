@@ -1,4 +1,8 @@
-<%- include('navbar', {active : "view collection"}) %>
+<% if (userdata.length > 0) { %>
+  <%- include('membernavbar', {active: "view collection"}) %>
+  <% } else {%> 
+  <%- include('navbar', {active: "view collection"}) %>
+  <% } %>
 
 <div class="row d-flex justify-content-center align-items-left h-100 pt-5 pb-5">
   <div class="column col-8 col-md-8 col-xl-6 pt-1 mt-1 mb-1 pt-3 mt-3">

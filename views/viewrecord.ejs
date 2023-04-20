@@ -1,4 +1,8 @@
-<%- include('navbar', {active : "view record"}) %>
+<% if (userdata.length > 0) { %>
+  <%- include('membernavbar', {active: "view record"}) %>
+  <% } else {%> 
+  <%- include('navbar', {active: "view record"}) %>
+  <% } %>
 
 <!-- Beginning of view Record Section -->
 <section class="vh-100">

@@ -10,13 +10,18 @@ searchcollectionsR.get("/searchcollections", function (req, res) {
   let readcollections = `SELECT * 
             FROM collection
             INNER JOIN user
-            ON collection.user_id = user.user_id;`;
+            ON collection.user_id = user.user_id;
+            
+            SELECT username
+            FROM user
+            WHERE user.user_id = ?;`;
 
-  connection.query(readcollections, (err, rows) => {
+  connection.query(readcollections,[userid], (err, rows) => {
     if (err) throw err;
-    let rowdata = rows;
+    let rowdata = rows[0];
+    let userdata = rows[1];
 
-    res.render("searchcollections", { rowdata });
+    res.render("searchcollections", { rowdata, userdata });
   });
 });
 

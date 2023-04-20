@@ -22,6 +22,7 @@ const viewrecordR = require(`./routes/viewrecordR`);
 const searchcollectionsR = require(`./routes/searchcollectionsR`);
 const viewotherscollectionR = require(`./routes/viewotherscollectionR`);
 const navbarR = require(`./routes/navbarR`);
+const logoutR = require(`./routes/logoutR`);
 
 // Post routes (Require)
 const addtrackPR = require(`./routes/post_routes/addtrackPR`);
@@ -70,6 +71,8 @@ app.use(`/`, viewrecordR);
 app.use(`/`, searchcollectionsR);
 app.use(`/`, viewotherscollectionR);
 app.use(`/`, navbarR);
+app.use(`/`, logoutR);
+
 
 // Post Routes (Use)
 app.use(`/`, addtrackPR);

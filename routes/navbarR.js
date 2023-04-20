@@ -15,7 +15,7 @@ navbarR.get("/navbar", function (req, res) {
 
     connection.query(getdetails, [userid], (err, rows) => {
         let userdata = rows;
-        console.log(`hi`);
+        console.log(userdata);
         if (err) throw err;
         res.redirect("navbar", { userdata });
     });
