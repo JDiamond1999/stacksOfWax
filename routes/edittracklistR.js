@@ -9,6 +9,8 @@ edittracklistR.get("/edittracklist", (req, res) => {
 
     if (sessionobj.authen) {
 
+        let userid = sessionobj.authen;
+
         let showid = req.query.recordid;
 
         let readtracks =
@@ -17,12 +19,17 @@ edittracklistR.get("/edittracklist", (req, res) => {
         ON track.track_id=record_track.track_id
         INNER JOIN record
         ON record_track.record_id=record.record_id
-        WHERE record.record_id = ?;`;
+        WHERE record.record_id = ?;
+        
+        SELECT username
+        FROM user
+        WHERE user.user_id = ?;`;
 
-        connection.query(readtracks, [showid], (err, rows) => {
+        connection.query(readtracks, [showid,userid], (err, rows) => {
             if (err) throw err;
-            let rowdata = rows;
-            res.render(`edittracklist`, { rowdata });
+            let rowdata = rows[0];
+            let userdata = rows[1];
+            res.render(`edittracklist`, { rowdata, userdata });
         });
 
     } else {

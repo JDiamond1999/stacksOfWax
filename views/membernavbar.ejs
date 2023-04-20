@@ -56,10 +56,8 @@
         </li>
         <!-- End of 'Home' -->
 
-       
-
         <!-- Controls Navbar active status of 'Collections' dropdown -->
-        <li <% if (active === 'manage collections' || active === 'view collection' || active === 'add collection') { %>
+        <li <% if (active === 'manage collections' || active === 'view collection' || active === 'add collection' || active === `search collections`) { %>
           class = "nav-item dropdown active"
           <%} else { %>
           class = "nav-item dropdown"
@@ -75,7 +73,7 @@
             Collections
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a <% if (active === 'manage collections' || active === 'view collection' || active === 'add collection') { %>
+            <a <% if (active === 'manage collections' || active === 'view collection' || active === 'add collection' ) { %>
               class = "dropdown-item active"
               href="\managecollections"
               <%} else { %>
@@ -117,9 +115,7 @@
               class = dropdown-item
               href="\managerecords"
               <% } %> > Manage my Records </a>
-              
           </div>
-          
         </li>
 
         <!-- Controls Navbar active status of 'Account' dropdown -->
@@ -139,14 +135,14 @@
             <%= userdata[0].username %>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a <% if (active === 'manage records' || active === 'view record' || active === 'add record') { %>
+            <a <% if (active === `sign in`) { %>
               class = "dropdown-item active"
               href="\signin"
               <%} else { %>
               class = dropdown-item
               href="\signin"
               <% } %> > Switch Account </a>
-              <a <% if (active === 'search collections') { %>
+              <a <% if (active === 'logout') { %>
                 class = "dropdown-item active"
                 href="\logout"
                 <%} else { %>

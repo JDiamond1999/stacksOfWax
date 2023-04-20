@@ -39,17 +39,19 @@ viewotherscollectionR.get("/viewotherscollection", function (req, res) {
 
             SELECT * FROM
             user_liked_collection
-            INNER JOIN liked_collection
-            ON user_liked_collection.liked_collection_id = liked_collection.liked_collection_id
-            WHERE user_liked_collection.user_id = ? AND liked_collection.collection_id = ?;
+            WHERE user_liked_collection.user_id = ? AND user_liked_collection.collection_id = ?;
             
             SELECT COUNT(*)
             FROM user_liked_collection
-            INNER JOIN liked_collection
-            ON user_liked_collection.liked_collection_id = liked_collection.liked_collection_id
-            WHERE liked_collection.collection_id = ?;`;
+            WHERE user_liked_collection.collection_id = ?;
+            
+            SELECT AVG(star_rating)
+            FROM collection
+            INNER JOIN review
+            ON collection.collection_id = review.collection_id
+            WHERE review.collection_id = ?`;
 
-    connection.query(readrecords, [showid, userid, userid, showid, userid, showid, showid], (err, rows) => {
+    connection.query(readrecords, [showid, userid, userid, showid, userid, showid, showid, showid], (err, rows) => {
         if (err) throw err;
         let rowdata = rows[0];
         let userdata = rows[1];
@@ -57,10 +59,23 @@ viewotherscollectionR.get("/viewotherscollection", function (req, res) {
         let reviews = rows[3];
         let likedstatus = rows[4];
         let likecount = rows[5][0][`COUNT(*)`];
-        res.render("viewotherscollection", { rowdata, userdata, userrecords, reviews, likedstatus, likecount });
+        let averagestars = rows[6][0][`AVG(star_rating)`];
+        
+        
+        if(Number.isInteger(averagestars)){
+            let realaveragestars = averagestars;
+            res.render("viewotherscollection", { rowdata, userdata, userrecords, reviews, likedstatus, likecount, averagestars, realaveragestars });
+        } else {
+            let realaveragestars = averagestars.toFixed(1);
+            averagestars = Math.floor(averagestars);
+            res.render("viewotherscollection", { rowdata, userdata, userrecords, reviews, likedstatus, likecount, averagestars, realaveragestars });
+        }
+        
+        
     });
 
 
 });
 
 module.exports = viewotherscollectionR;
+

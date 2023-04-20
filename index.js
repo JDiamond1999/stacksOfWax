@@ -23,6 +23,8 @@ const searchcollectionsR = require(`./routes/searchcollectionsR`);
 const viewotherscollectionR = require(`./routes/viewotherscollectionR`);
 const navbarR = require(`./routes/navbarR`);
 const logoutR = require(`./routes/logoutR`);
+const mostlikedR = require(`./routes/mostlikedR`);
+const highestratedR = require(`./routes/highestratedR`);
 
 // Post routes (Require)
 const addtrackPR = require(`./routes/post_routes/addtrackPR`);
@@ -72,7 +74,8 @@ app.use(`/`, searchcollectionsR);
 app.use(`/`, viewotherscollectionR);
 app.use(`/`, navbarR);
 app.use(`/`, logoutR);
-
+app.use(`/`, mostlikedR);
+app.use(`/`, highestratedR);
 
 // Post Routes (Use)
 app.use(`/`, addtrackPR);

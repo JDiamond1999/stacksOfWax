@@ -69,9 +69,9 @@
         <!-- End of 'Sign in' -->
 
         <li class = "nav-item">
-          <a <% if (active === 'sign in' || active === 'register') { %>
+          <a <% if (active === 'search collections' || active === `view collection`) { %>
             class = "nav-link active"
-            href="\signin"
+            href="\searchcollections"
             <%} else { %>
             class = nav-link
             href="\searchcollections"

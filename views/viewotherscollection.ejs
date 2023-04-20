@@ -99,10 +99,21 @@
 <div class="row d-flex justify-content-center align-items-left pb-5">
   <div class="column col-10 col-md-8 col-xl-8 mb-1">
     <header class="pb-3 mb-5 border-bottom"></header>
-    <h3 class="pull-right pb-3">
-      <span class="pinktext">Reviews for </span>
-      <span><%= rowdata[0].collection_name %></span>
-    </h3>
+   
+      
+   
+      <h3 class = "pt-3 mt-1 pb-5 text-center">
+        <% for( let index = 0; index < averagestars; index++ ) { %>
+          <span class="pinktext">★ </span>
+          <% } %> <% for( let index = 0; index < 5-averagestars; index++ )
+          { %>
+          <span class="pinktext">☆ </span>
+          <% } %>
+          <span> - <%= realaveragestars %> Star Rating Average</span>
+        </h3>
+        
+
+   
 
     <% if (userdata.length > 0) { %>
     <p class="text-center pb-3">

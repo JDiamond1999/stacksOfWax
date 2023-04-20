@@ -19,12 +19,12 @@
 
         
 
-        <div class="col col-xs-12 col-lg-7 input-group rounded">
+        <div class="column col-md-12 col-lg-6 input-group rounded pt-3">
           <input
             type="searchphrase"
             name="searchphrase"
             class="form-control rounded"
-            placeholder="Search all Collections"
+            placeholder="Search my Records"
             aria-label="Search"
             aria-describedby="search-addon"
           />
@@ -39,10 +39,34 @@
               <i class="fas fa-search"></i>
             </span>
           </button>
-         
-        </form>
-        </div>
+     
+    </div>
+
+    
+    <div class="column col-md-12 col-lg-3 pl-2 pt-3 text-center">
+      <a href="\mostliked">
+        <button
+          class="enlarge btn btn-outline-secondary text-white"
+          type="button"
+        >
+          Sort by Most Liked
+        </button>
+      </a>
+    </div>
+
+      <div class="column col-md-12 col-lg-3 pl-2 pt-3 text-center">
+        <a href="\highestrated">
+          <button
+            class="enlarge btn btn-outline-secondary text-white"
+            type="button"
+            style="background-color: #34e5be !important";
+          >
+            Sort by Highest Rated
+          </button>
+        </a>
       </div>
+    </form>
+    </div>
       
 
     <div class="row pt-3 text-center pb-5">
@@ -72,7 +96,12 @@
                   ><%= collection.username %></span
                 >
               </p>
-              <p class = "pinktext">♥      <%= collection.collection_likes %> likes</p>
+              <p>
+                <span class = "pinktext">♥      <%= collection.collection_likes %> likes</span>
+                <span style = "color: #34e5be">★     <%= collection.rating_average %>/5 rating</span>
+
+              </p>
+              
             </div>
           </div>
         </a>

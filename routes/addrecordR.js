@@ -8,13 +8,21 @@ addrecordR.get("/addrecord", function (req, res) {
 
     if (sessionobj.authen) {
 
-        let readgenres = `SELECT genre_name, genre_id 
-    FROM genre;`;
+        let userid = sessionobj.authen;
 
-        connection.query(readgenres, (err, rows) => {
+        let readgenres = 
+        `SELECT genre_name, genre_id 
+        FROM genre;
+        
+        SELECT username
+        FROM user
+        WHERE user.user_id = ?;`;
+
+        connection.query(readgenres,[userid], (err, rows) => {
             if (err) throw err;
-            let rowdata = rows;
-            res.render("addrecord", { rowdata });
+            let rowdata = rows[0];
+            let userdata = rows[1];
+            res.render("addrecord", { rowdata, userdata });
         });
 
     } else {

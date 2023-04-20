@@ -10,15 +10,9 @@ likecollectionPR.get("/likecollection", (req, res) => {
     let userid = sessionobj.authen;
 
     let addlike =
-        `INSERT INTO liked_collection 
-        (liked_collection_id, collection_id) 
-        VALUES (NULL, ?);
-        
-        SET @likedcollectionid = LAST_INSERT_ID();
-        
-        INSERT INTO user_liked_collection 
-        (user_liked_collection_id, user_id, liked_collection_id) 
-        VALUES (NULL, ?, @likedcollectionid);
+        `INSERT INTO user_liked_collection 
+        (user_liked_collection_id, user_id, collection_id) 
+        VALUES (NULL,?, ?);
         
         SET @collectionlikes = 
         (SELECT collection_likes
@@ -31,7 +25,7 @@ likecollectionPR.get("/likecollection", (req, res) => {
         SET collection_likes = @collectionlikes
         WHERE collection_id = ? `;
 
-    connection.query(addlike, [collectionid, userid, collectionid, collectionid ], (err, rows) => {
+    connection.query(addlike, [userid, collectionid, collectionid, collectionid ], (err, rows) => {
         if (err) throw err;
     });
 
