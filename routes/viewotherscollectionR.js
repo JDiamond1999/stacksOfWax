@@ -65,11 +65,15 @@ viewotherscollectionR.get("/viewotherscollection", function (req, res) {
         if(Number.isInteger(averagestars)){
             let realaveragestars = averagestars;
             res.render("viewotherscollection", { rowdata, userdata, userrecords, reviews, likedstatus, likecount, averagestars, realaveragestars });
-        } else {
-            let realaveragestars = averagestars.toFixed(1);
+        } else if (averagestars>0){
+            let realaveragestars = parseFloat(averagestars).toFixed(1);;
             averagestars = Math.floor(averagestars);
             res.render("viewotherscollection", { rowdata, userdata, userrecords, reviews, likedstatus, likecount, averagestars, realaveragestars });
+        } else {
+            let realaveragestars = 0;
+            res.render("viewotherscollection", { rowdata, userdata, userrecords, reviews, likedstatus, likecount, averagestars, realaveragestars });
         }
+        
         
         
     });

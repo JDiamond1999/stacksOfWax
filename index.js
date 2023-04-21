@@ -43,6 +43,8 @@ const searchcollectionsPR = require(`./routes/post_routes/searchcollectionsPR`);
 const addreviewPR = require(`./routes/post_routes/addreviewPR`);
 const likecollectionPR = require(`./routes/post_routes/likecollectionPR`);
 const unlikecollectionPR = require(`./routes/post_routes/unlikecollectionPR`);
+const removereviewPR = require(`./routes/post_routes/removereviewPR`);
+const removecollectionPR = require(`./routes/post_routes/removecollectionPR`);
 
 // Middleware (Use)
 app.use(express.static(path.join(__dirname, "./css")));
@@ -94,6 +96,8 @@ app.use(`/`, searchcollectionsPR);
 app.use(`/`, addreviewPR);
 app.use(`/`, likecollectionPR);
 app.use(`/`, unlikecollectionPR);
+app.use(`/`, removereviewPR);
+app.use(`/`, removecollectionPR);
 
 // View Engine Setup
 app.set("view engine", "ejs");

@@ -18,8 +18,8 @@ addrecordPR.post("/addrecord", (req, res) => {
 
     let insertartistrecord =
         `INSERT INTO artist
-        (artist_name, artist_desc)
-         VALUES (?, "null");
+        (artist_name)
+         VALUES (?);
 
         SET @artistid = LAST_INSERT_ID();
   

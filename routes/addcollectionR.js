@@ -10,14 +10,21 @@ addcollectionR.get("/addcollection", function (req, res) {
     if (sessionobj.authen) {
         let userid = sessionobj.authen;
 
-        let readgenres = `SELECT record_name, record_id
-    FROM record
-    WHERE user_id=?;`;
+        let readgenres = 
 
-        connection.query(readgenres, [userid], (err, rows) => {
+        `SELECT record_name, record_id
+        FROM record
+        WHERE user_id=?;
+        
+        SELECT *
+        FROM user
+        WHERE user_id = ?;`;
+
+        connection.query(readgenres, [userid, userid], (err, rows) => {
             if (err) throw err;
-            let rowdata = rows;
-            res.render("addcollection", { rowdata });
+            let rowdata = rows[0];
+            let userdata = rows[1];
+            res.render("addcollection", { rowdata, userdata });
         });
 
     } else {

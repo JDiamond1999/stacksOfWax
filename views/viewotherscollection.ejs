@@ -1,7 +1,7 @@
 <% if (userdata.length > 0) { %>
-  <%- include('membernavbar', {active: "view collection"}) %>
+  <%- include('membernavbar', {active: "search collections"}) %>
   <% } else {%> 
-  <%- include('navbar', {active: "view collection"}) %>
+  <%- include('navbar', {active: "search collections"}) %>
   <% } %>
 
 <div class="row d-flex justify-content-center align-items-left h-100 pt-5 pb-5">
@@ -16,16 +16,24 @@
     <h3 class="pull-right pt-5 text-center">
 
       <span><%= rowdata[0].collection_name %> 
-        <% if (likedstatus.length > 0 && userdata.length > 0) { %>
-          <a href="unlikecollection?collectionid=<%= rowdata[0].collection_id %>"
-            class = "pl-4 pinktext"
-            title="Unlike `<%= rowdata[0].collection_name %>` Collection">♥ </a>
-            
-        <% } else if(userdata.length >0){ %> 
-          <a href="likecollection?collectionid=<%= rowdata[0].collection_id %>"
-            class = "pl-4 pinktext"
-            title="Like `<%= rowdata[0].collection_name %>` Collection">♡</a>
-          <% } %>
+
+        <% if (userdata.length > 0) { %>
+
+        <% if (userdata[0].user_id != rowdata[0].user_id) { %>
+        
+        <% if (likedstatus.length > 0) { %>
+        
+            <a href="unlikecollection?collectionid=<%= rowdata[0].collection_id %>"
+              class = "pl-4 pinktext"
+              title="Unlike `<%= rowdata[0].collection_name %>` Collection">♥ </a>
+
+          <% } else { %>
+
+            <a href="likecollection?collectionid=<%= rowdata[0].collection_id %>"
+              class = "pl-4 pinktext"
+              title="Like `<%= rowdata[0].collection_name %>` Collection">♡</a>
+
+          <% }}} %>
           <p class="pinktext pt-3"><%= likecount %> likes</p>
         </span>
         
@@ -116,6 +124,8 @@
    
 
     <% if (userdata.length > 0) { %>
+
+      <% if (userdata[0].user_id != rowdata[0].user_id) { %>
     <p class="text-center pb-3">
       <button
         class="enlarge btn btn-danger text-center"
@@ -154,7 +164,7 @@
               method="POST"
               class="was-validated"
             >
-              <!-- Title input -->
+             
               <div class="form-outline mb-4">
                 <input
                   type="title"
@@ -215,9 +225,10 @@
         </div>
     </div>
 
-    <% } %> <% reviews.forEach(review => { %>
+    <% }} %> <% reviews.forEach(review => { %>
     <div class="card mb-5">
       <div class="card-header bg-transparent">
+        <div class = "row">
         <div class="column col-8">
           <div class="card" style="width: 4rem">
             <img
@@ -225,6 +236,7 @@
               src="<%= review.profile_image %>"
               alt="Card image cap"
             />
+            
           </div>
           <div class="pt-2">
             <p class="pull-right pt-1">
@@ -233,7 +245,35 @@
             </p>
           </div>
         </div>
+        
+        <% if (userdata.length > 0) { %>
+        <% if (review.user_id == userdata[0].user_id) { %>
+        
+        <div class="column col-4 text-right p-1 pr-2">
+          <form action="removereview?reviewid=<%= review.review_id %>" method="POST">
+            <div class="text-lg-start">
+                  <button
+                    type="submit"
+                    value="send"
+                    class="buttonDefault btn btn-danger text-white"
+                  >
+                    - Remove 
+                  </button>
+                </div>
+            </div>
+            <div class="d-none">
+              <input
+              type="text"
+              class="form-control"
+              value="<%= rowdata[0].collection_id %>"
+              name="collectionid"
+            />
+            </div>
+        </form>
+          <% }} %>
       </div>
+    </div>
+
       <div class="card-body p-4 m-2">
         <h5 class="card-title"><%= review.review_title %></h5>
         <p class="card-text"><%= review.review_desc %></p>

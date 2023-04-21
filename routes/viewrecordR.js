@@ -23,7 +23,7 @@ viewrecordR.get("/viewrecord", function (req, res) {
         ON record.artist_id = artist.artist_id
         WHERE record.record_id = ?;
         
-        SELECT genre_name
+        SELECT genre_name, genre_desc
         FROM genre
         INNER JOIN record
         ON genre.genre_id = record.genre_id

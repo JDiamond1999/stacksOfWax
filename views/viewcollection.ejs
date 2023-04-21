@@ -12,6 +12,22 @@
     <h3 class="pb-4 pt-4 text-center">
       Edit Records in: <%= rowdata[0].collection_name %>
     </h3>
+    <div class="pb-3 mb-4 text-center">
+      <form
+        action="removecollection?collectionid=<%= rowdata[0].collection_id %>"
+        method="POST"
+      >
+        <button
+          class="buttonDefault btn btn-danger text-white"
+          type="submit"
+          data-bs-toggle="tooltip"
+          data-bs-placement="right"
+          title="Remove Collection"
+        >
+          - REMOVE COLLECTION
+        </button>
+      </form>
+      </div>
 
     <% rowdata.forEach(element => { %>
     <div class="row d-flex justify-content-center">

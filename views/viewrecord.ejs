@@ -21,7 +21,7 @@
           </div>
         </div>
         <div
-          class="column col-md-8 col-lg-6 col-xl-4 pt-1 mt-1 mb-1 pt-sm-3 mt-sm-3 mx-auto"
+          class="column col-md-8 col-lg-6 col-xl-6 pt-1 mt-1 mb-1 pt-sm-3 mt-sm-3 mx-auto"
         >
         <div class="form-outline mb-4 text-center">
           <h3 class="pb-2"><%= rowdata[0].record_name %></h3>
@@ -32,7 +32,7 @@
                 method="POST"
               >
                 <button
-                  class="enlarge btn btn-danger text-white"
+                  class="buttonDefault btn btn-danger text-white"
                   type="submit"
                   data-bs-toggle="tooltip"
                   data-bs-placement="right"
@@ -64,6 +64,7 @@
                 <p class="pinktext font-weight-bold">Genre:</p>
                 <p><%= genredata[0].genre_name %></p>
               </h5>
+              
 
               <p>
                 <button
@@ -74,7 +75,7 @@
                   aria-expanded="false"
                   aria-controls="collapseExample"
                 >
-                  Tracklist
+                  More Info
                 </button>
               </p>
               <div class="collapse" id="collapseExample">
@@ -86,7 +87,7 @@
                        <strong class = "pinktext"> Tracklist:</strong>
                       <% } else { %>
                        
-                    <li><%= track.track_name %></li>
+                    <li class = "pt-1"><%= track.track_name %></li>
 
                     <% }}) %>
                   </ul>
@@ -101,6 +102,9 @@
                       </button>
                     </a>
                   <% } %>
+
+                  <strong class = "pinktext pt-5 pb-3"> What is <%= genredata[0].genre_name %>?</strong>
+                  <p><%= genredata[0].genre_desc %></p>
                   
                 </div>
               </div>
