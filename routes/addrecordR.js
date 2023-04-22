@@ -11,6 +11,7 @@ addrecordR.get("/addrecord", function (req, res) {
         let userid = sessionobj.authen;
 
         let readgenres = 
+        
         `SELECT genre_name, genre_id 
         FROM genre;
         

@@ -15,7 +15,7 @@ addtocollectionPR.post("/addtocollection", (req, res) => {
 
         let addtocollection =
 
-            `INSERT INTO collection_record
+        `INSERT INTO collection_record
         (collection_id, record_id)
         VALUES(?, ?);`
 

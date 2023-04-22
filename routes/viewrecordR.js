@@ -6,13 +6,11 @@ const connection = require(`../middleware/db`);
 viewrecordR.get("/viewrecord", function (req, res) {
     // let recordid = req.params.recordid;
     let showid = req.query.recordid;
-
-
     let sessionobj = req.session;
     let userid = sessionobj.authen;
 
-
     let readsql =
+        
         `SELECT cover_image, record_name, artist_name, record_label, year_of_release, track_name, record.record_id
         FROM track
         INNER JOIN record_track
@@ -42,7 +40,6 @@ viewrecordR.get("/viewrecord", function (req, res) {
         let userdata = rows[2];
         res.render(`viewrecord`, { rowdata, genredata, userdata, userid});
     });
-
 
 });
 

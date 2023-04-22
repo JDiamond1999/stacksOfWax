@@ -11,7 +11,8 @@ viewotherscollectionR.get("/viewotherscollection", function (req, res) {
 
     // chris says dont use select * from as it increases loading time/dont need resources
     let readrecords =
-        `SELECT * 
+        
+            `SELECT * 
             FROM user
             INNER JOIN collection
             ON user.user_id = collection.user_id
@@ -53,6 +54,7 @@ viewotherscollectionR.get("/viewotherscollection", function (req, res) {
 
     connection.query(readrecords, [showid, userid, userid, showid, userid, showid, showid, showid], (err, rows) => {
         if (err) throw err;
+
         let rowdata = rows[0];
         let userdata = rows[1];
         let userrecords = rows[2];
@@ -60,7 +62,6 @@ viewotherscollectionR.get("/viewotherscollection", function (req, res) {
         let likedstatus = rows[4];
         let likecount = rows[5][0][`COUNT(*)`];
         let averagestars = rows[6][0][`AVG(star_rating)`];
-        
         
         if(Number.isInteger(averagestars)){
             let realaveragestars = averagestars;
@@ -73,11 +74,8 @@ viewotherscollectionR.get("/viewotherscollection", function (req, res) {
             let realaveragestars = 0;
             res.render("viewotherscollection", { rowdata, userdata, userrecords, reviews, likedstatus, likecount, averagestars, realaveragestars });
         }
-        
-        
-        
+         
     });
-
 
 });
 

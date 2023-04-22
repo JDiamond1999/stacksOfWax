@@ -14,6 +14,7 @@ signupPR.post("/signup", (req, res) => {
     let photo = req.body.photo_field;
 
     let insertuser =
+    
     `INSERT INTO user 
     (user_id, username, first_name, last_name, email_address, password, profile_image) 
     VALUES (NULL, ?, ?, ?, ?, ?, ?);`

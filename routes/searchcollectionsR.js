@@ -7,7 +7,9 @@ searchcollectionsR.get("/searchcollections", function (req, res) {
   let userid = sessionobj.authen;
 
   // chris says dont use select * from as it increases loading time/dont need resources
-  let readcollections = `SELECT * 
+  let readcollections = 
+  
+            `SELECT * 
             FROM collection
             INNER JOIN user
             ON collection.user_id = user.user_id;

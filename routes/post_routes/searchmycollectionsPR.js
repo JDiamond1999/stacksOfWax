@@ -10,6 +10,7 @@ searchmycollectionsPR.post("/searchmycollections", (req, res, next) => {
     let collection_name = req.body.searchphrase;
 
     let search =
+    
         `SELECT * FROM collection
         INNER JOIN user
         ON collection.user_id = user.user_id

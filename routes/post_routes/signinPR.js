@@ -10,20 +10,24 @@ signinPR.post("/signin", (req, res) => {
     let password = req.body.password_field;
 
     let checkuser =
+    
         'SELECT * FROM user WHERE email_address = ? AND password = ?; ';
 
     connection.query(checkuser, [email, password], (err, rows) => {
         if (err) throw err;
         let numRows = rows.length;
         if (numRows > 0) {
+
             let sessionobj = req.session;
             sessionobj.authen = rows[0].user_id;
             res.redirect(`/managerecords`);
+
         } else {
-            res.redirect(`/signin`)
+
+            res.redirect(`/signin`);
+
         }
     });
-
 
 });
 

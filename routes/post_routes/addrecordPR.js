@@ -17,7 +17,10 @@ addrecordPR.post("/addrecord", (req, res) => {
 
 
     let insertartistrecord =
-        `INSERT INTO artist
+
+        `START TRANSACTION;
+        
+        INSERT INTO artist
         (artist_name)
          VALUES (?);
 
@@ -31,7 +34,9 @@ addrecordPR.post("/addrecord", (req, res) => {
         
         INSERT INTO record_track 
         (record_track_id, record_id, track_id) 
-        VALUES (NULL, @recordid, '186');`;
+        VALUES (NULL, @recordid, '186');
+        
+        COMMIT;`;
 
     connection.query(
         insertartistrecord,

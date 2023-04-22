@@ -14,7 +14,10 @@ addcollectionPR.post("/addcollection", (req, res) => {
     let record_id = req.body.record;
 
     let insertcollection =
-        `INSERT INTO collection
+
+        `START TRANSACTION;
+        
+        INSERT INTO collection
         (collection_id, collection_name, collection_image, collection_desc, collection_likes, user_id)
          VALUES (NULL, ?, ?, ?, 0, ?);
 
@@ -22,7 +25,9 @@ addcollectionPR.post("/addcollection", (req, res) => {
 
         INSERT INTO collection_record
         (collection_id, record_id)
-        VALUES(@collectionid, ?);`;
+        VALUES(@collectionid, ?);
+
+        COMMIT;`;
 
     connection.query(
         insertcollection,

@@ -10,7 +10,10 @@ unlikecollectionPR.get("/unlikecollection", (req, res) => {
     let userid = sessionobj.authen;
 
     let addlike =
-        `DELETE user_liked_collection
+
+        `START TRANSACTION;
+        
+        DELETE user_liked_collection
         FROM user_liked_collection
         WHERE user_liked_collection.user_id = ? AND user_liked_collection.collection_id = ?;
         
@@ -23,7 +26,9 @@ unlikecollectionPR.get("/unlikecollection", (req, res) => {
         
         UPDATE collection 
         SET collection_likes = @collectionlikes
-        WHERE collection_id = ?; `;
+        WHERE collection_id = ?;
+        
+        COMMIT;`;
 
     connection.query(addlike, [userid, collectionid, collectionid, collectionid], (err, rows) => {
         if (err) throw err;

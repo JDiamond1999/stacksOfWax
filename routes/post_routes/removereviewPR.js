@@ -9,7 +9,10 @@ removereviewPR.post("/removereview", (req, res, next) => {
     let collectionid = req.body.collectionid;
 
         let removereview =
-        `DELETE FROM review
+
+        `START TRANSACTION;
+        
+        DELETE FROM review
         WHERE review_id = ?;
         
         SET @averagerating = 
@@ -21,7 +24,9 @@ removereviewPR.post("/removereview", (req, res, next) => {
         
         UPDATE collection 
         SET rating_average = @averagerating 
-        WHERE collection_id = ?;`;
+        WHERE collection_id = ?;
+        
+        COMMIT;`;
 
         connection.query(removereview, [reviewid, collectionid, collectionid], (err, rows) => {
             if (err) throw err;

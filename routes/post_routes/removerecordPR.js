@@ -8,7 +8,10 @@ removerecordPR.post("/removerecord", (req, res, next) => {
     let recordid = req.query.recordid;
 
     let removerecord =
-        `DELETE record_track, track
+
+        `START TRANSACTION;
+        
+        DELETE record_track, track
         FROM record_track
         INNER JOIN track
         ON record_track.track_id = track.track_id
@@ -26,7 +29,9 @@ removerecordPR.post("/removerecord", (req, res, next) => {
         FROM record
         INNER JOIN artist
         ON record.artist_id = artist.artist_id
-        WHERE record.record_id = ?;`;
+        WHERE record.record_id = ?;
+        
+        COMMIT;`;
 
     connection.query(removerecord, [recordid, recordid, recordid], (err, rows) => {
         if (err) throw err;

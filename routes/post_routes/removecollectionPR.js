@@ -8,7 +8,10 @@ removecollectionPR.post("/removecollection", (req, res, next) => {
     let collectionid = req.query.collectionid;
 
     let removecollection =
-        `DELETE collection_record
+
+        `START TRANSACTION;
+        
+        DELETE collection_record
         FROM collection_record
         WHERE collection_id = ?;
         
@@ -22,7 +25,9 @@ removecollectionPR.post("/removecollection", (req, res, next) => {
         
         DELETE collection
         FROM collection 
-        WHERE collection_id = ?;`;
+        WHERE collection_id = ?;
+        
+        COMMIT;`;
 
     connection.query(removecollection, [collectionid, collectionid, collectionid, collectionid], (err, rows) => {
         if (err) throw err;

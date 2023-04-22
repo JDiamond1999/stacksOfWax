@@ -17,7 +17,10 @@ addreviewPR.post("/addreview", (req, res) => {
     if (star_rating != `--Star Rating--` || review_title.length == 0 || review_desc.length == 0 ) {
 
         let addreview =
-            `INSERT INTO review 
+
+        `START TRANSACTION;
+
+        INSERT INTO review 
         (review_id, review_title, star_rating, review_desc, user_id, collection_id) 
         VALUES (NULL, ?, ?, ?, ?, ?);
 
@@ -30,7 +33,9 @@ addreviewPR.post("/addreview", (req, res) => {
         
         UPDATE collection 
         SET rating_average = @averagerating 
-        WHERE collection_id = ?;`;
+        WHERE collection_id = ?;
+        
+        COMMIT;`;
 
         connection.query(addreview, [review_title, star_rating, review_desc, userid, collection_id, collection_id, collection_id], (err, rows) => {
             if (err) throw err;

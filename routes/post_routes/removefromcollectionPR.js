@@ -9,6 +9,7 @@ removefromcollectionPR.post("/removefromcollection", (req, res, next) => {
     let record_id = req.body.recordid;
     
     let removerecord =
+    
         `DELETE FROM collection_record
         WHERE collection_record.collection_id = ? AND collection_record.record_id = ?;`
 

@@ -10,7 +10,10 @@ likecollectionPR.get("/likecollection", (req, res) => {
     let userid = sessionobj.authen;
 
     let addlike =
-        `INSERT INTO user_liked_collection 
+
+        `START TRANSACTION;
+        
+        INSERT INTO user_liked_collection 
         (user_liked_collection_id, user_id, collection_id) 
         VALUES (NULL,?, ?);
         
@@ -23,7 +26,9 @@ likecollectionPR.get("/likecollection", (req, res) => {
         
         UPDATE collection 
         SET collection_likes = @collectionlikes
-        WHERE collection_id = ? `;
+        WHERE collection_id = ?;
+        
+        COMMIT;`;
 
     connection.query(addlike, [userid, collectionid, collectionid, collectionid ], (err, rows) => {
         if (err) throw err;

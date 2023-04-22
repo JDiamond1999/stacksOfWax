@@ -9,9 +9,10 @@ signinR.get("/signin", function (req, res) {
     let userid = sessionobj.authen;
 
     let getdetails =
+    
     `SELECT username
     FROM user
-    WHERE user.user_id = ?`;
+    WHERE user.user_id = ?;`;
 
     connection.query(getdetails, [userid], (err, rows) => {
         let userdata = rows;

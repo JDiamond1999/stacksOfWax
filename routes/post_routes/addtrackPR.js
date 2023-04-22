@@ -9,7 +9,10 @@ addtrackPR.post("/addtrack", (req, res) => {
     let track_name = req.body.addtrack;
 
     let addtrack =
-        `INSERT INTO track 
+
+        `START TRANSACTION;
+        
+        INSERT INTO track 
         (track_id, track_name) 
         VALUES (NULL, ?);
         
@@ -17,7 +20,9 @@ addtrackPR.post("/addtrack", (req, res) => {
         
         INSERT INTO record_track
         (record_track_id,record_id,track_id)
-        VALUES (NULL, ?, @trackid);`;
+        VALUES (NULL, ?, @trackid);
+        
+        COMMIT;`;
 
     connection.query(addtrack, [track_name, recordid], (err, rows) => {
         if (err) throw err;

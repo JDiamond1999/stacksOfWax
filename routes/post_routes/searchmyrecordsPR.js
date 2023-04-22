@@ -15,6 +15,7 @@ searchmyrecordsPR.post("/searchmyrecords", (req, res, next) => {
     if (filter == `all`) {
 
         let search =
+
         `SELECT * FROM record
         INNER JOIN user
         ON record.user_id = user.user_id
@@ -35,6 +36,7 @@ searchmyrecordsPR.post("/searchmyrecords", (req, res, next) => {
     } else if (filter == `artist`){
 
         let search =
+
         `SELECT * FROM record
         INNER JOIN artist
         ON record.artist_id = artist.artist_id
@@ -55,6 +57,7 @@ searchmyrecordsPR.post("/searchmyrecords", (req, res, next) => {
     } else if (filter == `genre`){
         
         let search =
+
         `SELECT * FROM record
         INNER JOIN genre
         ON record.genre_id = genre.genre_id
@@ -72,12 +75,6 @@ searchmyrecordsPR.post("/searchmyrecords", (req, res, next) => {
 
         });
     }
-
-
-        
-   
-
-    
 
 });
 

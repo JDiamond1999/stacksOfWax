@@ -14,6 +14,7 @@ viewcollectionR.get("/viewcollection", function (req, res) {
     if (sessionobj.authen) {
         // chris says dont use select * from as it increases loading time/dont need resources
         let readrecords =
+            
             `SELECT * 
             FROM collection
             INNER JOIN collection_record
