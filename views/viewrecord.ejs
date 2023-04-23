@@ -25,7 +25,7 @@
         >
         <div class="form-outline mb-4 text-center">
           <h3 class="pb-2"><%= rowdata[0].record_name %></h3>
-          <% if (userdata[0].user_id == userid) { %>
+          <% if (ownerdata[0].user_id == userid) { %>
             <div class="pb-5 mb-3">
               <form
                 action="removerecord?recordid=<%= rowdata[0].record_id %>"
@@ -50,6 +50,16 @@
               <h5 class="pb-1">
                 <p class="pinktext font-weight-bold">Artist Name:</p>
                 <p><%= rowdata[0].artist_name %></p>
+              </h5>
+
+              <% if (similarartists.length > 0) { %>
+                
+              <h5 class="pb-1">
+                <p class="pinktext font-weight-bold">Similar Artists:</p>
+                <% similarartists.forEach(artist => { %>
+                  <p><%= artist %></p>
+                <% }) %>
+                <% } %>
               </h5>
 
               <h5 class="pb-1">
@@ -92,7 +102,7 @@
                     <% }}) %>
                   </ul>
 
-                  <% if (userdata[0].user_id == userid) { %>
+                  <% if (ownerdata[0].user_id == userid) { %>
                     <a href="\edittracklist?recordid=<%= rowdata[0].record_id %>">
                       <button
                         class="enlarge btn btn-outline-secondary text-white"
