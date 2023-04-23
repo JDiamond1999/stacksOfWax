@@ -12,7 +12,7 @@ viewotherscollectionR.get("/viewotherscollection", function (req, res) {
     // chris says dont use select * from as it increases loading time/dont need resources
     let readrecords =
         
-            `SELECT * 
+            `SELECT collection_image, collection_name, user.user_id, collection.collection_id, username, collection_desc, record.record_id, cover_image, record_name 
             FROM user
             INNER JOIN collection
             ON user.user_id = collection.user_id
@@ -24,7 +24,7 @@ viewotherscollectionR.get("/viewotherscollection", function (req, res) {
             ON record.artist_id=artist.artist_id
             WHERE collection.collection_id = ?;
             
-            SELECT *
+            SELECT user_id, profile_image, username
             FROM user
             WHERE user_id = ?;
             
@@ -32,14 +32,14 @@ viewotherscollectionR.get("/viewotherscollection", function (req, res) {
             FROM record
             WHERE user_id=?;
             
-            SELECT *
+            SELECT profile_image, username, review.user_id, review_id, review_title, review_desc, star_rating, time_stamp
             FROM review
             INNER JOIN user
             ON review.user_id = user.user_id
             WHERE collection_id = ?;
 
-            SELECT * FROM
-            user_liked_collection
+            SELECT user_liked_collection_id
+            FROM user_liked_collection
             WHERE user_liked_collection.user_id = ? AND user_liked_collection.collection_id = ?;
             
             SELECT COUNT(*)

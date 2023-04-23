@@ -11,7 +11,8 @@ searchcollectionsPR.post("/searchcollections", (req, res, next) => {
 
     let search =
     
-        `SELECT * FROM collection
+        `SELECT collection_id, collection_image, collection_name, username, collection_likes, rating_average
+        FROM collection
         INNER JOIN user
         ON collection.user_id = user.user_id
         WHERE collection.collection_name = ?;

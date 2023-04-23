@@ -16,7 +16,7 @@ addcollectionR.get("/addcollection", function (req, res) {
         FROM record
         WHERE user_id=?;
         
-        SELECT *
+        SELECT user_id
         FROM user
         WHERE user_id = ?;`;
 

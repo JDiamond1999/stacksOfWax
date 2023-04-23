@@ -4,29 +4,36 @@ const connection = require(`../../middleware/db`);
 const cookieParser = require('cookie-parser');
 const sessions = require('express-session');
 
+const bcrypt = require('bcrypt');
+
 signinPR.post("/signin", (req, res) => {
 
     let email = req.body.email_field;
     let password = req.body.password_field;
 
-    let checkuser =
-    
-        'SELECT * FROM user WHERE email_address = ? AND password = ?; ';
+    let loadhash =
 
-    connection.query(checkuser, [email, password], (err, rows) => {
+        `SELECT password, user_id FROM user WHERE email_address = ?;`;
+
+    connection.query(loadhash, [email], (err, rows) => {
+
         if (err) throw err;
-        let numRows = rows.length;
-        if (numRows > 0) {
+        let hash = rows[0].password;
 
-            let sessionobj = req.session;
-            sessionobj.authen = rows[0].user_id;
-            res.redirect(`/managerecords`);
+        bcrypt.compare(password, hash, function (err, result) {
 
-        } else {
+            if (result) {
 
-            res.redirect(`/signin`);
+                let sessionobj = req.session;
+                sessionobj.authen = rows[0].user_id;
+                res.redirect(`/managerecords`);
 
-        }
+            } else {
+                res.redirect(`/signin`);
+
+            }
+        });
+
     });
 
 });

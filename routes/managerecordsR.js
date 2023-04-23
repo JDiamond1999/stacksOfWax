@@ -14,7 +14,7 @@ managerecordsR.get("/managerecords", function (req, res) {
         // chris says dont use select * from as it increases loading time/dont need resources
         let readrecords =
             
-            `SELECT * 
+            `SELECT record_id, cover_image, record_name, artist_name 
             FROM user
             INNER JOIN record
             ON user.user_id = record.user_id
@@ -22,7 +22,7 @@ managerecordsR.get("/managerecords", function (req, res) {
             ON record.artist_id=artist.artist_id
             WHERE user.user_id = ?;
             
-            SELECT *
+            SELECT first_name, username
             FROM user
             WHERE user_id = ? `;
 

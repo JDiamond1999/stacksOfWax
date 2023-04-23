@@ -16,7 +16,9 @@ searchmyrecordsPR.post("/searchmyrecords", (req, res, next) => {
 
         let search =
 
-        `SELECT * FROM record
+        `SELECT record_id, cover_image, record_name, artist_name FROM artist
+        INNER JOIN record
+        ON artist.artist_id = record.artist_id
         INNER JOIN user
         ON record.user_id = user.user_id
         WHERE record.record_name = ? AND user.user_id = ?;
@@ -37,7 +39,7 @@ searchmyrecordsPR.post("/searchmyrecords", (req, res, next) => {
 
         let search =
 
-        `SELECT * FROM record
+        `SELECT record_id, cover_image, record_name, artist_name FROM record
         INNER JOIN artist
         ON record.artist_id = artist.artist_id
         WHERE artist.artist_name = ? AND record.user_id = ?;
@@ -58,7 +60,9 @@ searchmyrecordsPR.post("/searchmyrecords", (req, res, next) => {
         
         let search =
 
-        `SELECT * FROM record
+        `SELECT record_id, cover_image, record_name, artist_name FROM artist
+        INNER JOIN record
+        ON artist.artist_id = record.artist_id
         INNER JOIN genre
         ON record.genre_id = genre.genre_id
         WHERE genre.genre_name = ? AND record.user_id = ?;

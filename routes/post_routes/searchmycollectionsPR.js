@@ -11,12 +11,13 @@ searchmycollectionsPR.post("/searchmycollections", (req, res, next) => {
 
     let search =
     
-        `SELECT * FROM collection
+        `SELECT collection_id, collection_image, collection_name, username  
+        FROM collection
         INNER JOIN user
         ON collection.user_id = user.user_id
         WHERE collection.collection_name = ? AND user.user_id = ?;
         
-        SELECT *
+        SELECT first_name
         FROM user
         WHERE user_id = ?; `;
 

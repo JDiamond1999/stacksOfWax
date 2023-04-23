@@ -14,13 +14,13 @@ managecollectionsR.get("/managecollections", function (req, res) {
         // chris says dont use select * from as it increases loading time/dont need resources
         let readcollections =
         
-            `SELECT * 
+            `SELECT collection_id, collection_image, collection_name, username 
             FROM user
             INNER JOIN collection
             ON user.user_id = collection.user_id
             WHERE user.user_id = ?;
             
-            SELECT *
+            SELECT first_name, username
             FROM user
             WHERE user_id = ? `;
 
