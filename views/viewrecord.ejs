@@ -103,17 +103,19 @@
                   </ul>
 
                   <% if (ownerdata[0].user_id == userid) { %>
-                    <a href="\edittracklist?recordid=<%= rowdata[0].record_id %>">
-                      <button
-                        class="enlarge btn btn-outline-secondary text-white"
-                        type="button"
-                      >
-                        Edit Tracklist
-                      </button>
-                    </a>
+                    <div class = "pb-3">
+                      <a href="\edittracklist?recordid=<%= rowdata[0].record_id %>">
+                        <button
+                          class="enlarge btn btn-outline-secondary text-white"
+                          type="button"
+                        >
+                          Edit Tracklist
+                        </button>
+                      </a>
+                    </div>
                   <% } %>
 
-                  <strong class = "pinktext pt-5 pb-3"> What is <%= genredata[0].genre_name %>?</strong>
+                  <strong class = "pinktext pt-2 pb-3"> What is <%= genredata[0].genre_name %>?</strong>
                   <p><%= genredata[0].genre_desc %></p>
                   
                 </div>

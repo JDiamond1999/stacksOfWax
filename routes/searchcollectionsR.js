@@ -6,7 +6,6 @@ searchcollectionsR.get("/searchcollections", function (req, res) {
   let sessionobj = req.session;
   let userid = sessionobj.authen;
 
-  // chris says dont use select * from as it increases loading time/dont need resources
   let readcollections = 
   
             `SELECT collection_id, collection_image, collection_name, username, collection_likes, rating_average 

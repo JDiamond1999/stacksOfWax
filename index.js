@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require(`cookie-parser`);
 const sessions = require('express-session');
 
+
 // Middleware and Get Routes (Require)
 const oneHour = 1000 * 60 * 60 * 1;
 const globalErrHandler = require(`./middleware/errorhandler`);

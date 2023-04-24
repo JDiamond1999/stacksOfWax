@@ -11,7 +11,6 @@ managecollectionsR.get("/managecollections", function (req, res) {
 
         let userid = sessionobj.authen;
 
-        // chris says dont use select * from as it increases loading time/dont need resources
         let readcollections =
         
             `SELECT collection_id, collection_image, collection_name, username 

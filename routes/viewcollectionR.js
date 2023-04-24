@@ -9,13 +9,11 @@ viewcollectionR.get("/viewcollection", function (req, res) {
     let userid = sessionobj.authen;
     let showid = req.query.collectionid;
 
-    
-
     if (sessionobj.authen) {
-        // chris says dont use select * from as it increases loading time/dont need resources
+        
         let readrecords =
             
-            `SELECT collection_image, collection_name, collection_id, cover_image, record_name, record_id 
+            `SELECT collection_image, collection_name, collection.collection_id, cover_image, record_name, record.record_id 
             FROM collection
             INNER JOIN collection_record
             ON collection.collection_id = collection_record.collection_id

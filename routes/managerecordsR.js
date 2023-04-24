@@ -11,7 +11,7 @@ managerecordsR.get("/managerecords", function (req, res) {
     if (sessionobj.authen) {
 
         let userid = sessionobj.authen;
-        // chris says dont use select * from as it increases loading time/dont need resources
+        
         let readrecords =
             
             `SELECT record_id, cover_image, record_name, artist_name 

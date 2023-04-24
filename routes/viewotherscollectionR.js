@@ -9,7 +9,6 @@ viewotherscollectionR.get("/viewotherscollection", function (req, res) {
     let userid = sessionobj.authen;
     let showid = req.query.collectionid;
 
-    // chris says dont use select * from as it increases loading time/dont need resources
     let readrecords =
         
             `SELECT collection_image, collection_name, user.user_id, collection.collection_id, username, collection_desc, record.record_id, cover_image, record_name 
